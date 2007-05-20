@@ -1,0 +1,6 @@
+
+[pagelayout_analytics]
+Source=pagelayout.tpl
+MatchFile=pagelayout_analytics.tpl
+Subdir=templates
+Match[googleanalytics]=1

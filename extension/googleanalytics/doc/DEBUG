@@ -1,0 +1,17 @@
+Google Analytics extension DEBUG
+
+Troubleshooting
+===============
+
+This document is a guide to debuging the Google Analyticsc extension
+
+1. Debug
+   -----
+
+   To switch test mode off, open up the settings file
+   googleanalytics.append.php and switch "TestMode=enabled"
+   to "TestMode=disabled".
+
+   Also make sure you have the proper settings in your
+   Google Analytics account control panel.
+

@@ -1,0 +1,32 @@
+./googleanalytics
+|-- design
+|   `-- standard
+|       `-- templates
+|           |-- google
+|           |   `-- analytics
+|           |       |-- order.tpl
+|           |       `-- stats.tpl
+|           `-- pagelayout_analytics.tpl
+|-- doc
+|   |-- FAQ
+|   |-- INSTALL
+|   |-- LICENSE
+|   |-- README
+|   |-- changelogs
+|   |   `-- CHANGELOG-1.0.0
+|   `-- tree.txt
+|-- modules
+|-- settings
+|   |-- design.ini.append.php
+|   |-- googleanalytics.ini.append.php
+|   |-- module.ini.append
+|   |-- override.ini.append
+|   |-- site.ini.append.php
+|   |-- workflow.ini.append.php
+|   `-- wrap_operator.ini.append.php
+`-- workflowtypes
+    `-- event
+        `-- ezreceipt
+            `-- ezreceipttype.php
+
+12 directories, 17 files

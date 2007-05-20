@@ -1,0 +1,96 @@
+Google Analytics extension README
+
+What is the Google Analytics extension?
+================================
+
+Google Analytics is a true eZ publish extension
+that provides the fetching and submission of
+information from client browser back to google
+like page view statistics and order purchase 
+statistics.
+
+
+Google Analytics version
+=======================
+
+The current version of Google Analytics is 1.0.1.
+Last Updated: May 15, 2007
+
+You can find details about changes for this
+version in doc/changelogs/1.0/CHANGELOG-1.0.0-to-1.0.1
+
+
+License
+=======
+
+This software is licensed under the GNU General Public License.
+
+The complete license agreement is included in the doc/LICENSE file.
+
+For more information or questions please contact license@brookinsconsulting.com
+
+
+Requirements
+============
+
+The following requirements exists for using Google Analytics extension:
+
+o  eZ publish version:
+
+   Make sure you use eZ publish version 3.4 or higher. Recommened 3.9.2. Tested with 3.10.0
+
+o  PHP version:
+
+   Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.2
+
+o  eZ publish must be reachable from the internet:
+
+   Make sure you have installed eZ publish on a webserver
+   that is reachable from the internet.
+
+o  Configured Google Analytics Website Profile
+
+   Make sure you have a Google Analytics Account and Website Profile for your website.
+
+
+Installation
+============
+
+Details on installing Google Analytics located in the file doc/INSTALL.
+
+Configuration
+=============
+
+Details on configuring Google Analytics located in the file doc/CONFIG.
+
+HOWTO
+=====
+
+An article on howto use the Google Analytics located in the file doc/HOWTO.
+
+Usage
+=====
+
+Details on using Google Analytics located in the file doc/USAGE.
+
+Troubleshooting
+===============
+
+1. Read the DEBUG
+   --------------
+
+   Some common debug suggestions are listed in the guide doc/DEBUG.
+
+2. Read the FAQ
+   ------------
+
+   Some problems are more common than others. The most common ones
+   are listed in the doc/FAQ.
+
+3. Support
+   -------
+
+   If you have find any problems not handled by this document or the FAQ you
+   can contact Brookins Consulting through the support system:
+
+   http://brookinsconsulting.com/contact

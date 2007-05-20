@@ -1,0 +1,91 @@
+Google Analytics extension CONFIG
+
+This document is a general configuration guide to the Google Analytics extension settings
+
+Google Analyticics Extension Settings
+=====================================
+
+1. Default Extension Settings
+   --------------------------
+
+   Upon installing and activating the extension, one must alter these configuration settings.
+
+   File: googleanalytics/settings/googleanalytics.ini.append.php
+
+   <?php /* #?ini charset="iso-8859-1"?
+
+   [GoogleAnalyticsWorkflow]
+   OrderSubmitToGoogle=enabled
+   PageSubmitToGoogle=enabled
+   Urchin=UA-994200-0
+   HostName=disabled
+   ShopName=eZ
+   Script=https://ssl.google-analytics.com/urchin.js
+   DebugMode=disabled
+   TestMode=disabled
+
+   */ ?>
+
+2. Requirements
+   ------------
+
+2.1 Google Analytics Account Website Profile
+    ----------------------------------------
+
+    First, if you do not already have a google analytics account 
+    for your website you should go sign up first,
+    http://www.google.com/analytics/sign_up.html
+
+2.2 Installing extension
+    --------------------
+
+2.3 Installing template dependancies
+    --------------------------------
+
+2.3.1 Configure page statatistics tracking
+      ------------------------------------
+
+      Configure your installation of eZ Publish for page statatistics tracking
+
+      Install the the page statatistics template operators into your existing pagelayout.tpl
+
+2.3.2 Configure webshop order statatistics tracking
+      ---------------------------------------------
+
+      Install the the order statatistics template operators, template override, workflow event and trigger dependancies
+
+3. Creating settings override file
+   -------------------------------
+
+   To change the following settings. 
+
+   First create a global setting override or siteaccess override 
+   of the setting file, extension/googleanalytics/settings/googleanalytics.ini.append.php
+
+   Examples of possible settings override file location
+
+   settings/googleanalytics.ini(.append(.php))
+   settings/override/googleanalytics.ini(.append(.php))
+   settings/siteaccess/example_com/googleanalytics.ini(.append(.php))
+
+3.2 Required Settings Modifications
+    -------------------------------
+
+3.3 Urchin
+    ------
+
+    First you will want to replace the default tracking code number.
+
+    Default: Urchin=UA-994200-0
+    Modification: Urchin=YOUR-Account-Number
+    Example: Urchin=UA-999042-0
+
+3.4 ShopName (Optional)
+    -------------------
+
+    If you wish to use the e-commerce order statistics features of google analytics 
+    you would replace the string, 'mycustomshopname' with brief string to represent your shopname uniquely.
+
+    Default: ShopName=eZ
+    Modification: ShopName=YourShopName
+    Example: ShopName=mycustomshopname

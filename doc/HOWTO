@@ -1,0 +1,113 @@
+Google Analytics extension HOWTO
+
+HOWTO
+=====
+
+Title: Advanced eZ publish Statistics and Reporting
+Subtitle: Advanced Website Statistics Reporting with Google Analytics
+
+Index
+
+1. Introduction
+2. Getting started
+3. Installing extension
+4. Configuration
+5. Conclusion
+
+
+Page 1 - Introduction 
+
+
+1. Introduction to Google Analytics
+   ------------
+
+   About the Google Analytics (service and extension)
+
+
+Page 2 - Getting started with Google Analytics
+
+
+2. Requirements
+   ------------
+
+2.1 Do you already have a Google Analaytics account?
+
+    If you already have a Google Analytics account please continue to 1.2, if not please see, 3.0
+
+2.2 Do you already have a Google Analaytics Website Profile / Urchin ID?
+
+    If you already have a Google Analytics Website Profile / Urchin ID, please continue to, 10.1
+
+3. Creating your account
+
+   Getting a Google Analytics account is easy and available at no cost.
+
+   Simply sign-up at, http://www.google.com/analytics/sign_up.html
+
+4. Creating your first website profile
+
+   Getting a Google Analytics Website Profile for your website.
+
+4.1 Login to your account at the Google Analytics Website, http://google.com/analytics/
+
+4.2 Click text link, '+ Add Website Profile'
+
+4.3 Enter the text of your own website address into to the url form field and click the form button, 'Finish'
+
+4.4 Document the Google Analaytics Website Profile Urchin ID
+
+    Document the Google Analaytics Website Profile / Urchin ID returned upon sucessfull creation.
+
+    This id must be installed into the eZ Publish Google Analytics extension settings.
+
+5. Configuring additional settings
+
+   Unknown.
+
+6. Configuring Page Statistics Tracking
+
+   Unknown.
+
+8. Configure your google analytics account
+
+   Unknown.
+
+9. Get account number
+
+   Unknown.
+
+
+Page 3 - Installing Google Analytics
+
+
+10. Installing Google Analytics
+
+10.1 Re: Installing an eZ publish extension.
+
+10.2 Re: Activating an eZ publish extension.
+
+10.3 Re: Configuring an eZ publish extension general and extension specific settings
+
+
+Page 4 - Configuration of Google Analytics extension
+
+10. Installing account number
+
+    Setting, googleanalytics.ini.append.php and doc/CONFIG
+
+11. Enabling account statistics capture
+
+    * Migrated descriptions from doc/USAGE 
+
+12. Extended configuration options
+
+    Unknown. Duplicate.
+
+13. Configuring e-commerce Statistics Tracking
+
+    * Migrated descriptions from doc/USAGE
+
+
+Page 5 - Conclusion
+
+

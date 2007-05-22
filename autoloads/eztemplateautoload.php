@@ -33,6 +33,6 @@
 $eZTemplateOperatorArray = array();
 $eZTemplateOperatorArray[] = array( 'script' => 'extension/googleanalytics/autoloads/googleanalyticsoperators.php',
                                     'class' => 'GoogleAnalyticsOperators',
-                                    'operator_names' => array( 'urchinTracker', 'urchinTrackerHeader', 'urchinOrderTracker',
-                                    'xmlAttributeValue', 'jsEscapedString', 'formatNumericDecimal' ) );
+                                    'operator_names' => array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'xmlAttributeValue', 'jsEscapedString', 'formatNumericDecimal' ) );
+
 ?>

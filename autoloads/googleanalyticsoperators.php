@@ -22,6 +22,14 @@
 
 include_once( "lib/ezutils/classes/ezini.php" );
 
+/*!
+  \class GoogleAnalyticsOperators googleanalyticsoperators.php
+  \brief Base documentation class for google analytics operators
+
+  These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics.
+
+  \note This class is used by the googleanalytics extension
+*/
 class GoogleAnalyticsOperators
 {
     /*!
@@ -29,12 +37,12 @@ class GoogleAnalyticsOperators
     */
     function GoogleAnalyticsOperators()
     {
-        $this->Operators = array( 'urchinTracker', 'urchinTrackerHeader', 'urchinOrderTracker', 'xmlAttributeValue', 'jsEscapedString', 'formatNumericDecimal' );
+        $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'xmlAttributeValue', 'jsEscapedString', 'formatNumericDecimal' );
         $this->Debug = false;
     }
 
     /*!
-     Returns the operators in this class.
+     \Returns the operators provided in this class.
     */
     function &operatorList()
     {
@@ -42,9 +50,9 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \return true to tell the template engine that the parameter list
-    exists per operator type, this is needed for operator classes
-    that have multiple operators.
+     \Return true to tell the template engine that the parameter list
+     exists per operator type, this is needed for operator classes
+     that have multiple operators.
     */
     function namedParameterPerOperator()
     {
@@ -52,17 +60,29 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     See eZTemplateOperator::namedParameterList()
+     \ Returns an array of named parameters, this allows for easier retrieval
+     of operator parameters. This also requires the function modify() has an extra
+     parameter called $named_params.
+ 
+     The position of each element (starts at 0) represents the position of the original
+     sequenced parameters. The key of the element is used as parameter name, while the
+     contents define the type and requirements.
+
+     The keys of each element content is:
+     * type - defines the type of parameter allowed
+     * required - boolean which says if the parameter is required or not, if missing
+     and required an error is displayed
+     * default - the default value if the parameter is missing
     */
     function namedParameterList()
     {
-        return array( 'urchinTracker' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
+        return array( 'bc_ga_urchin' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
                                              ),
 
-                      'urchinTrackerHeader' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
+                      'bc_ga_urchinHeader' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
                                              ),
 
-                      'urchinOrderTracker' => array( 'order' => array( 'type' => 'array', 'required' => true, 'default' => false )
+                      'bc_ga_urchinOrder' => array( 'order' => array( 'type' => 'array', 'required' => true, 'default' => false )
                                              ),
 
                       'xmlAttributeValue' => array( 'name' => array( 'type' => 'string', 'required' => true, 'default' => false ),
@@ -85,29 +105,29 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Executes the needed operator(s).
-     \Checks operator names, and calls the appropriate functions.
+     \Executes the requested operator(s).
+     \Checks operator names, and calls the appropriate functions and arguments.
     */
     function modify( &$tpl, &$operatorName, &$operatorParameters, &$rootNamespace,
                      &$currentNamespace, &$operatorValue, &$namedParameters )
     {
         switch ( $operatorName )
         {
-            case 'urchinTracker':
+            case 'bc_ga_urchin':
             {
-                $operatorValue = $this->urchinTracker( );
+                $operatorValue = $this->bc_ga_urchin( );
             }
             break;
 
-            case 'urchinTrackerHeader':
+            case 'bc_ga_urchinHeader':
             {
-                $operatorValue = $this->urchinTrackerHeader( );
+                $operatorValue = $this->bc_ga_urchinHeader( );
             }
             break;
 
-            case 'urchinOrderTracker':
+            case 'bc_ga_urchinOrder':
             {
-                $operatorValue = $this->urchinOrderTracker( $namedParameters['order'] );
+                $operatorValue = $this->bc_ga_urchinOrder( $namedParameters['order'] );
             }
             break;
 
@@ -132,11 +152,12 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return UrchinTracker html head javascript dependancies and method call
+     \Return Bc_Ga_UrchinTracker html head javascript dependancies and javascript method call on the html body onload event.
+     \Note This operator is required by the bc_ga_urchinOrder operator.
     */
-    function urchinTrackerHeader()
+    function bc_ga_urchinHeader()
     {
-        $ret = false;
+        $ret = "</head>\n<body>";
 
         // Settings
         $ini =& eZINI::instance( 'googleanalytics.ini' );
@@ -177,9 +198,9 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return UrchinTracker javascript method call with account settings
+     \Return Bc_Ga_UrchinTracker html javascript script dependancies and javascript method call with account settings.
     */
-    function urchinTracker()
+    function bc_ga_urchin()
     {
         $ret = false;
 
@@ -202,7 +223,7 @@ class GoogleAnalyticsOperators
           {
             $ret .= '  _udn = "'. $udn .'"'.";\n";
           }
-          $ret .= "  urchinTracker();\n";
+          $ret .= "  bc_ga_urchin();\n";
           // $ret .= '--> '."\n";
           $ret .= '</script>';
         }
@@ -215,7 +236,7 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Quick way to get the contents of an xml string attribute.
+     \Return the string contents of an xml attribute.
     */
     function xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
     {
@@ -258,7 +279,8 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Escape a string for htmlcharacters/other characters, safe for javascript. Escape Characters: , '
+     \Return a string with htmlcharacters and other special characters escaped; a string safe for use by javascript.
+     \Escaped Characters: , '
     */
     function jsEscapedString( $s )
     {
@@ -279,7 +301,7 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return a number, Round With Decimal Place Control
+     \Return a number rounded with decimal place control
     */
     function formatNumericDecimal( $n, $p=2 )
     {
@@ -298,9 +320,11 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return UrchinOrderTracker javascript method call with account settings
+     \Return Bc_Ga_UrchinOrderTracker javascript method call with account settings
+     \Note The operator bc_ga_urchinHeader is required by the bc_ga_urchinOrder operator.
+
     */
-    function urchinOrderTracker( $order_id )
+    function bc_ga_urchinOrder( $order_id )
     {
         $ret = false;
 
@@ -368,7 +392,7 @@ class GoogleAnalyticsOperators
 
         /*
         if ( $debug )
-            ezDebug::writeNotice( $ret, 'urchinOrderTracker:ret' ); */
+            ezDebug::writeNotice( $ret, 'bc_ga_urchinOrder:ret' ); */
 
         return $ret;
     }

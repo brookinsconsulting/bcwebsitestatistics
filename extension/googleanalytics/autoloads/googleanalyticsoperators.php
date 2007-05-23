@@ -39,8 +39,8 @@ class GoogleAnalyticsOperators
     /*!
      Constructor
 
-    \Sets the class variable 'Operators' which contains an array of available operators names.
-    \Sets the class variable 'Debug' to false.
+    Sets the class variable 'Operators' which contains an array of available operators names.
+    Sets the class variable 'Debug' to false.
     */
     function GoogleAnalyticsOperators()
     {
@@ -112,8 +112,8 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Executes the requested operator(s).
-     \Checks operator names, and calls the appropriate functions and arguments.
+     \Returns and executes the requested operator(s).
+      Also checks operator names, and calls the appropriate functions and arguments.
     */
     function modify( &$tpl, &$operatorName, &$operatorParameters, &$rootNamespace,
                      &$currentNamespace, &$operatorValue, &$namedParameters )
@@ -291,7 +291,7 @@ class GoogleAnalyticsOperators
 
     /*!
      \Return a string with htmlcharacters and other special characters escaped; a string safe for use by javascript.
-     \Escaped Characters: , '
+     \Note Escaped Characters: , '
      \Note The operator 'bc_ga_jsEscapedString' is implimented in the template override, order.tpl
     */
     function bc_ga_jsEscapedString( $s )
@@ -411,7 +411,10 @@ class GoogleAnalyticsOperators
     }
 
     /// \privatesection
+    /// \Returns the class variable 'Operators' which contains an array of available operators names.
     var $Operators;
+
+    /// \Returns the class variable 'Debug' to false.
     var $Debug;
 }
 

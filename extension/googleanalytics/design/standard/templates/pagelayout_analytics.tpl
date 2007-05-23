@@ -35,8 +35,7 @@
 {/foreach}
 
   <meta http-equiv="Content-Script-Type" content="text/javascript">
-</head>
-<body onload="__utmSetTrans();">
+{'false'|bc_ga_urchinHeader()}
 <!-- Complete page area: START -->
 
 {if $pagerootdepth|not}
@@ -253,7 +252,7 @@
 {/if}
 {/cache-block}
 
-{include uri="design:google/analytics/stats.tpl"}
+{'false'|bc_ga_urchin()}
 {* This comment will be replaced with actual debug report (if debug is on). *}
 <!--DEBUG_REPORT-->
 </body>

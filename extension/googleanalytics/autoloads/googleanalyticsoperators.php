@@ -28,16 +28,23 @@ include_once( "lib/ezutils/classes/ezini.php" );
 
   These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics.
 
-  \note This class is used by the googleanalytics extension
+  Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'.
+
+  The rest of the dependancies are handled internaly.
+
+  \Note This class is used by the googleanalytics extension
 */
 class GoogleAnalyticsOperators
 {
     /*!
      Constructor
+
+    \Sets the class variable 'Operators' which contains an array of available operators names.
+    \Sets the class variable 'Debug' to false.
     */
     function GoogleAnalyticsOperators()
     {
-        $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'xmlAttributeValue', 'jsEscapedString', 'formatNumericDecimal' );
+        $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' );
         $this->Debug = false;
     }
 
@@ -85,16 +92,16 @@ class GoogleAnalyticsOperators
                       'bc_ga_urchinOrder' => array( 'order' => array( 'type' => 'array', 'required' => true, 'default' => false )
                                              ),
 
-                      'xmlAttributeValue' => array( 'name' => array( 'type' => 'string', 'required' => true, 'default' => false ),
+                      'bc_ga_xmlAttributeValue' => array( 'name' => array( 'type' => 'string', 'required' => true, 'default' => false ),
                                                     'data' => array( 'type' => 'string', 'required' => true, 'default' => false )
                                              ),
 
-                      'jsEscapedString' =>  array( 'string' => array( 'type' => 'string',
+                      'bc_ga_jsEscapedString' =>  array( 'string' => array( 'type' => 'string',
                                                    'required' => true,
                                                    'default' => '' )
                                               ),
 
-                      'formatNumericDecimal' => array( 'number' => array( 'type' => 'string',
+                      'bc_ga_formatNumericDecimal' => array( 'number' => array( 'type' => 'string',
                                                        'required' => true,
                                                        'default' => '' ),
                                                        'places' => array( 'type' => 'string',
@@ -131,29 +138,29 @@ class GoogleAnalyticsOperators
             }
             break;
 
-            case 'xmlAttributeValue':
+            case 'bc_ga_xmlAttributeValue':
             {
-                $operatorValue = $this->xmlAttributeValue( $namedParameters['name'], $namedParameters['data'] );
+                $operatorValue = $this->bc_ga_xmlAttributeValue( $namedParameters['name'], $namedParameters['data'] );
             }
             break;
 
-            case 'jsEscapedString':
+            case 'bc_ga_jsEscapedString':
             {
-                $operatorValue = $this->jsEscapedString( $namedParameters['string'] );
+                $operatorValue = $this->bc_ga_jsEscapedString( $namedParameters['string'] );
             }
             break;
 
-            case 'formatNumericDecimal':
+            case 'bc_ga_formatNumericDecimal':
             {
-                $operatorValue = $this->formatNumericDecimal( $namedParameters['number'], $namedParameters['places'] );
+                $operatorValue = $this->bc_ga_formatNumericDecimal( $namedParameters['number'], $namedParameters['places'] );
             }
             break;
         }
     }
 
     /*!
-     \Return Bc_Ga_UrchinTracker html head javascript dependancies and javascript method call on the html body onload event.
-     \Note This operator is required by the bc_ga_urchinOrder operator.
+     \Return bc_ga_urchinHeader html head javascript dependancies and javascript method call on the html body onload event.
+     \Note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
     */
     function bc_ga_urchinHeader()
     {
@@ -192,13 +199,15 @@ class GoogleAnalyticsOperators
 
         /*
         if ( $debug )
-            ezDebug::writeNotice( $name, 'xmlAttributeValue:name' ); */
+            ezDebug::writeNotice( $name, 'bc_ga_xmlAttributeValue:name' ); */
 
         return $ret;
     }
 
     /*!
-     \Return Bc_Ga_UrchinTracker html javascript script dependancies and javascript method call with account settings.
+     \Return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
+     \Note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
+     \Note This operator is required to be installed in the html end body/html of your pagelayout.tpl template override.
     */
     function bc_ga_urchin()
     {
@@ -230,19 +239,21 @@ class GoogleAnalyticsOperators
 
         /*
         if ( $debug )
-            ezDebug::writeNotice( $name, 'xmlAttributeValue:name' ); */
+            ezDebug::writeNotice( $name, 'bc_ga_xmlAttributeValue:name' ); */
 
         return $ret;
     }
 
     /*!
      \Return the string contents of an xml attribute.
+     \Note The operator 'bc_ga_xmlAttributeValue' is implimented in the template override, order.tpl
+     \Note Used to fetch the value of the xml attributes of the template variable containing the order's shopaccounthandler customer address information in xml.
     */
-    function xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
+    function bc_ga_xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
     {
         // given string $data, will return the text string content of the $name attribute content of a given valid xml document.
         if ( $debug )
-            ezDebug::writeNotice( $name, 'xmlAttributeValue:name' );
+            ezDebug::writeNotice( $name, 'bc_ga_xmlAttributeValue:name' );
 
         // get information out of eZXML
         include_once('lib/ezxml/classes/ezxml.php');
@@ -251,7 +262,7 @@ class GoogleAnalyticsOperators
 
         // print_r($data);
         if ( $debug )
-            ezDebug::writeNotice( $data, 'xmlAttributeValue:data' );
+            ezDebug::writeNotice( $data, 'bc_ga_xmlAttributeValue:data' );
 
         // continue only with content
         if( $xmlDoc != null and $name != null )
@@ -273,7 +284,7 @@ class GoogleAnalyticsOperators
         }
 
         if ( $debug )
-            ezDebug::writeNotice( $ret, 'xmlAttributeValue:ret' );
+            ezDebug::writeNotice( $ret, 'bc_ga_xmlAttributeValue:ret' );
 
         return $ret;
     }
@@ -281,8 +292,9 @@ class GoogleAnalyticsOperators
     /*!
      \Return a string with htmlcharacters and other special characters escaped; a string safe for use by javascript.
      \Escaped Characters: , '
+     \Note The operator 'bc_ga_jsEscapedString' is implimented in the template override, order.tpl
     */
-    function jsEscapedString( $s )
+    function bc_ga_jsEscapedString( $s )
     {
         $ret = false;
         if( $s )
@@ -295,15 +307,16 @@ class GoogleAnalyticsOperators
         }
 
         /* if ( $debug )
-            ezDebug::writeNotice( $e, 'jsEscapedString:ret' ); */
+            ezDebug::writeNotice( $e, 'bc_ga_jsEscapedString:ret' ); */
 
         return $ret;
     }
 
     /*!
      \Return a number rounded with decimal place control
+     \Note Used by order.tpl
     */
-    function formatNumericDecimal( $n, $p=2 )
+    function bc_ga_formatNumericDecimal( $n, $p=2 )
     {
         $ret = false;
         if( $n or $n == 0 )
@@ -322,7 +335,7 @@ class GoogleAnalyticsOperators
     /*!
      \Return Bc_Ga_UrchinOrderTracker javascript method call with account settings
      \Note The operator bc_ga_urchinHeader is required by the bc_ga_urchinOrder operator.
-
+     \Note The operator 'bc_ga_urchinOrder' is implimented in the template override, order.tpl
     */
     function bc_ga_urchinOrder( $order_id )
     {
@@ -349,29 +362,29 @@ class GoogleAnalyticsOperators
             $ret = '<form style="display:none;" name="utmform">';
 
             // Fetch Order Total
-            $np_order_subtotal_price_ex_vat = $this->formatNumericDecimal( $order->totalExVAT() );
-            $np_order_subtotal_price_inc_vat = $this->formatNumericDecimal( $order->totalIncVAT() );
+            $np_order_subtotal_price_ex_vat = $this->bc_ga_formatNumericDecimal( $order->totalExVAT() );
+            $np_order_subtotal_price_inc_vat = $this->bc_ga_formatNumericDecimal( $order->totalIncVAT() );
             $np_order_subtotal_price_vat_sub = $np_order_subtotal_price_inc_vat - $np_order_subtotal_price_ex_vat;
-            $np_order_subtotal_price_vat = $this->formatNumericDecimal( $np_order_subtotal_price_vat_sub );
+            $np_order_subtotal_price_vat = $this->bc_ga_formatNumericDecimal( $np_order_subtotal_price_vat_sub );
 
             $ret .= '<textarea id="utmtrans">UTM:T|'."$order->OrderNr|$shop_name|$np_order_subtotal_price_ex_vat|$np_order_subtotal_price_vat|";
 
             // Fetch Shipping Total
             foreach( $order->orderItems() as $order_item )
             {
-                $np_order_item_price_inc_vat = $this->formatNumericDecimal( $order_item->Price );
+                $np_order_item_price_inc_vat = $this->bc_ga_formatNumericDecimal( $order_item->Price );
                 $ret .= "$np_order_item_price_inc_vat";
             }
 
-            $user_city = $this->xmlAttributeValue( 'city', $order->DataText1 );
-            $user_state = $this->xmlAttributeValue( 'state', $order->DataText1 );
-            $user_country = $this->xmlAttributeValue( 'country', $order->DataText1 );
+            $user_city = $this->bc_ga_xmlAttributeValue( 'city', $order->DataText1 );
+            $user_state = $this->bc_ga_xmlAttributeValue( 'state', $order->DataText1 );
+            $user_country = $this->bc_ga_xmlAttributeValue( 'country', $order->DataText1 );
             $ret .= "|$user_city|$user_state|$user_country\n";
 
             // Fetch Product Item Total
             foreach( $order->productItems() as $product_item )
             {
-                $np_product_item_price_inc_vat = $this->formatNumericDecimal( $product_item['price_inc_vat'] );
+                $np_product_item_price_inc_vat = $this->bc_ga_formatNumericDecimal( $product_item['price_inc_vat'] );
                 $product_item_node_id = $product_item['node_id'];
                 $product_item_name = $product_item['object_name'];
                 $product_item_count = $product_item['item_count'];

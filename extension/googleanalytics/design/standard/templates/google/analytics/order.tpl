@@ -136,39 +136,6 @@
     </tr>
     </table>
 
-{*
-Statement: Field {$order.data_text_1} Stores user information in xml format!
-Question: Patch kernel or impliment phpoperator to explode and return key user xml entries required?
-Dependancies:
-
-{def $user_city=$order.data_text_1.city}
-{def $user_state=$order.data_text_1.state}
-{def $user_country=$order.data_text_1.country}
-{$order.data_text_1}<hr />
-*}
-
-{def $user_city=wrap_user_func('getXMLString', array('city', $order.data_text_1) )}
-{def $user_state=wrap_user_func('getXMLString', array('state', $order.data_text_1) )}
-{def $user_country=wrap_user_func('getXMLString', array('country', $order.data_text_1))}
-{def $shopname=ezini('GoogleAnalyticsWorkflow', 'ShopName', 'googleanalytics.ini')}
-
-{*
-Format:
-    UTM:T|[order-id]|[affiliation]|
-    [total]|[tax]| [shipping]|[city]|[state]|[country] UTM:I|[order-id]|[sku/code]|[productname]|[category]|[price]|
-    [quantity]
-*}
-    <form style="display:none;" name="utmform">
-{def $np_order_subtotal_price_ex_vat=wrap_user_func('getFormatNumericDecimal', $order.total_ex_vat )
-     $np_order_subtotal_price_vat_sub=sub($order.total_inc_vat,$order.total_ex_vat)
-     $np_order_subtotal_price_vat=wrap_user_func('getFormatNumericDecimal', $np_order_subtotal_price_vat_sub)
-}
-    <textarea id="utmtrans">UTM:T|{$order.order_nr}|{$shopname|wash}|{$np_order_subtotal_price_ex_vat}|{$np_order_subtotal_price_vat}|{section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}{def $np_order_item_price_inc_vat=wrap_user_func('getFormatNumericDecimal', $OrderItem:item.price_inc_vat )}{$np_order_item_price_inc_vat}{/section}|{$user_city}|{$user_state}|{$user_country}
-{section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
-{def $np_product_item_price_inc_vat=$product_item.price_inc_vat}
-
-UTM:I|{$order.order_nr}|{$product_item.node_id}|{$product_item.object_name}|{$product_item.item_object.contentobject.main_node.parent.name}|{$np_product_item_price_inc_vat}|{$product_item.item_count}
-{/section}</textarea>
-    </form>
+    {'false'|bc_ga_urchinOrder( $order )}
 </div>
 {undef}

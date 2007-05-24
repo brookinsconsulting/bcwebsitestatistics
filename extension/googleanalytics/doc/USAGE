@@ -43,25 +43,25 @@ Google Analytics extension USAGE
 2.1.3 Install Google Analytics Template Operators
       -------------------------------------------
 
-      Decide first if you only need page tracking or if you also need webshop order tracking. 
+      Decide first if you only need page tracking or if you also need webshop order tracking.
 
 2.1.4 Install the following template operators in your primary design extension's templates
       -------------------------------------------------------------------------------------
 
-     - urchinTracker - Place the template operator '{urchinTracker()}' as the last element before the string '</body>'.
+     - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</body>'.
 
 2.1.5 Review
       ------
 
-    Test. Test to ensure you installation has succesfully enabled the related modifications (dependencies)
+    Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
 
-    Clear All Caches. Be certain to clear all caches. Both within 
-    - the eZ Publish Administration > Setup > Cache 
+    Clear All Caches. Be certain to clear all caches. Both within
+    - the eZ Publish Administration > Setup > Cache
     - and via shell comandline # ./bin/shell/clearcache --clear-all
 
     Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
 
-    ReConfirm. Reconfirm the correct and successfull installation of the settings and template operators.
+    Reconfirm. Reconfirm the correct and successful installation of the settings and template operators.
 
 
 2.2 Usage: (e-Commerce) Order / Purchase Statistics Tracking for your web site
@@ -81,25 +81,29 @@ Google Analytics extension USAGE
 2.2.3.1 Install the following template operators in your primary design extension's templates
         -------------------------------------------------------------------------------------
 
-        'urchinTracker', 'urchinTrackerHeader' and 'urchinOrderTracker'.
+        'bc_ga_urchin', 'bc_ga_urchinHeader' and 'bc_ga_urchinOrder'.
 
 2.2.3.2 Install the following template operators in your primary design extension's pagelayout.tpl template
         ---------------------------------------------------------------------------------------------------
 
-        - urchinTrackerHeader - Replace the string '</head><body>' with '{urchinTrackerHeader()}'
+        - bc_ga_urchinHeader - Replace the string '</head><body>' with '{'false'|bc_ga_urchinHeader()}'
 
-        - urchinTracker - Place the template operator '{urchinTracker()}' as the last element before the string '</body>'.
+        - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</body>'.
 
 2.2.3.3 Install the following template operator in your primary design extension's order.tpl template
         ---------------------------------------------------------------------------------------------
 
-        - 'urchinOrderTracker' - This template (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. 
+        - 'bc_ga_urchinOrder' - The googleanalytics extension provides one unique template, 'google/analyticcs/order.tpl which contains a customized header representing the workflow event (template view) position in the checkout process and the template operator 'bc_ga_urchinOrder'.
 
-        Please note the following important installation dependancies surrounding the customization of the order.tpl template
+        - The template 'google/analytics/order.tpl' (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. Please take care to ensure your own custom design extension is prioritized above the googleanalytics extension.
 
-        - The googleanalytics extension provides one unique template, 'google/analyticcs/order.tpl'
+        If you use a custom design extension other than the stock eZ Publish and ezwebin you will want to seriously consider creating a customized copy of the 'shop/orderview.tpl' template within your own custom design extension and customize this template to include the required template operator '{'false'|bc_ga_urchinOrder()}'.
 
-        - The template 'google/analyticcs/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/orderview.tpl'
+        Please note the following important installation dependencies surrounding the customization of the order.tpl template
+
+        - The googleanalytics extension provides one unique template, 'google/analytics/order.tpl'
+
+        - The template 'google/analytics/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/orderview.tpl'
 
         - The template 'order.tpl' has been modified to (upon workflow event trigger) present the user with an 'order completed' view before presenting the user with the 'order view' / 'order receipt view'.
 
@@ -114,33 +118,31 @@ Google Analytics extension USAGE
 
       Clear all cache completely (This the most important step most people skip)
 
-      Note: Do not edit workflow setting, must remove and read to affect workflow event definiitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
+      Note: Do not edit workflow setting, must remove and read to affect workflow event definitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
 
 2.2.5 Install workflow to trigger
       ---------------------------
 
       Add workflow to trigger selection. Checkout, After
 
-      It's easiest to learn how to write a new curl gateway using this class by examining and modifying an existing class.
-
 2.2.6 Review
       ------
 
-      Clear All Caches. Be certain to clear all caches. Both within 
-      - the eZ Publish Administration > Setup > Cache 
+      Clear All Caches. Be certain to clear all caches. Both within
+      - the eZ Publish Administration > Setup > Cache
       - and via shell comandline # ./bin/shell/clearcache --clear-all
 
-      Test. Test to ensure you installation has succesfully enabled the related modifications (dependencies)
+      Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
 
       Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
 
-      ReConfirm. Reconfirm the correct and successfull installation of the settings, template operators, workflow and trigger. 
+      Reconfirm. Reconfirm the correct and successful installation of the settings, template operators, workflow and trigger.
 
 
 3. Configure Google Analytics (service) Settings
-   --------------------------------------------- 
+   ---------------------------------------------
 
-3.1 Enable Google Analytics 
+3.1 Enable Google Analytics
     -----------------------
 
     Enable Google Analytics (service) e-commerce order statistics collection
@@ -152,7 +154,7 @@ Google Analytics extension USAGE
 3.2 Enable statistics tracking
     --------------------------
 
-    Inform Google Analytics of sucessfull installation of urchin javascript tracking code (operators)
+    Inform Google Analytics of successful installation of urchin javascript tracking code (operators)
 
     - Go to, http://google.com/analytics
     - Login to your Google Analytics account
@@ -169,10 +171,10 @@ Google Analytics extension USAGE
 
    Have a glass of orange juice; Look out the nearest window and day dream :)
    
-   When you return from your siesta be certain to update your 
-   production documentation to include notes on the modifications, 
-   dependancies and surrounding important details relevant to your 
-   eZ Publish installation with this additional dependancy, Google Analytics.
+   When you return from your siesta be certain to update your
+   production documentation to include notes on the modifications,
+   dependencies and surrounding important details relevant to your
+   eZ Publish installation with this additional dependency, Google Analytics.
 
 
 4. Further Reading
@@ -192,7 +194,7 @@ Google Analytics extension USAGE
    * The Circle of Analytics
    http://googleblog.blogspot.com/2005/11/circle-of-analytics.html
 
-   * How do I track e-commerce transactions? 
+   * How do I track e-commerce transactions?
    https://www.google.com/support/analytics/bin/answer.py?answer=27203&ctx=sibling
 
    * Google Analytics on eZpedia
@@ -220,3 +222,4 @@ Google Analytics extension USAGE
     can contact Brookins Consulting through the support system:
 
     http://brookinsconsulting.com/contact
+

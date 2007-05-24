@@ -14,7 +14,7 @@ Google Analytics version
 =======================
 
 The current version of Google Analytics is 1.0.1.
-Last Updated: May 15, 2007
+Last Updated: May 23, 2007
 
 You can find details about changes for this
 version in doc/changelogs/1.0/CHANGELOG-1.0.0-to-1.0.1
@@ -37,7 +37,7 @@ The following requirements exists for using Google Analytics extension:
 
 o  eZ publish version:
 
-   Make sure you use eZ publish version 3.4 or higher. Recommened 3.9.2. Tested with 3.10.0
+   Make sure you use eZ publish version 3.8.6 or higher. Recommended 3.9.2. Tested with 3.10.0
 
 o  PHP version:
 

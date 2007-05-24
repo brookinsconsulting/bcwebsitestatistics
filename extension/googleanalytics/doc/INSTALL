@@ -1,4 +1,4 @@
-Google Analytics extension v1.0.0 INSTALL
+Google Analytics extension v1.0.1 INSTALL
 
 Introduction
 ============
@@ -19,7 +19,7 @@ Introduction
    Google Analytics extension is licensed under the GNU General Public License.
 
    The GNU GPL gives you the right to use, modify and redistribute
-   Google Analytics under certain conditions. The GNU GPL licence
+   Google Analytics under certain conditions. The GNU GPL license
    is distributed with the software, see the file doc/LICENCE.
    It is also available at http://www.gnu.org/licenses/gpl.txt
 
@@ -35,7 +35,7 @@ Introduction
  
    o  eZ publish version:
 
-      Make sure you use eZ publish version 3.4 or higher. Recommened 3.9.2. Tested with 3.10.0
+      Make sure you use eZ publish version 3.4 or higher. Recommended 3.9.2. Tested with 3.10.0
 
    o  PHP version:
 
@@ -84,7 +84,7 @@ Installation
    http://ez.no/doc
 
 
-5. Installing Google Analytics extension pacakge
+5. Installing Google Analytics extension package
    ---------------------------------------------
 
    1. Copy the package into the `extension' directory
@@ -148,17 +148,18 @@ Configuration
 
     Install the following template operator code snippet in your primary design extension's pagelayout.tpl template:
 
-    {'false'|urchinTracker()}
+    {'false'|bc_ga_urchin()}
 
     As the last element before the string '</body>'.
 
     ** Be certain to specify your Urchin website profile account code number in the extension settings.
 
+    For more details on the Google Analytics template operator installation steps please see the file doc/USAGE.
 
 8.1.1 Review
       ------
 
-      Test. Test to ensure you installation has succesfully enabled the related modifications (dependencies)
+      Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
 
       Clear All Caches. Be certain to clear all caches via cli and admin.
        - eZ Publish Administration > Setup > Cache >> Clear All
@@ -166,7 +167,7 @@ Configuration
 
       Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
 
-      ReConfirm. Reconfirm the correct and successfull installation of the settings and template operators.
+      Reconfirm. Reconfirm the correct and successful installation of the settings and template operators.
 
       Enable. Enable Google Page Statistics Tracking
 
@@ -190,20 +191,22 @@ Configuration
 
 8.2.3.1 Install the following template operators in your primary design extension's templates.
 
-    'urchinTracker', 'urchinTrackerHeader' and 'urchinOrderTracker'.
+    'bc_ga_urchin', 'bc_ga_urchinHeader' and 'bc_ga_urchinOrder'.
+    
+    For more details on the Google Analytics template operator installation steps please see the file doc/USAGE.
 
 8.2.3.2 Install the following template operators in your primary design extension's pagelayout.tpl template
 
-    'urchinTracker' and 'urchinTrackerHeader' ...
+    'bc_ga_urchin' and 'bc_ga_urchinHeader' ...
 
-    - urchinTrackerHeader - Replace the string '</head><body>' with '{urchinTrackerHeader()}'
-    - urchinTracker - Place the template operator '{urchinTracker()}' as the last element before the string '</body>'.
+    - bc_ga_urchinHeader - Replace the string '</head><body>' with '{bc_ga_urchinHeader()}'
+    - bc_ga_urchin - Place the template operator '{bc_ga_urchin()}' as the last element before the string '</body>'.
 
 8.2.3.3 Install the following template operator in your primary design extension's order.tpl template
 
-    - 'urchinOrderTracker' - This template (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. 
+    - 'bc_ga_urchinOrder' - This template (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. 
 
-    Please note the following important installation dependancies surrounding the customization of the order.tpl template
+    Please note the following important installation dependencies surrounding the customization of the order.tpl template
 
     - The googleanalytics extension provides one unique template.
 
@@ -224,22 +227,22 @@ Configuration
     C) Click on the group you have just created, and in the
        Workflows box click the "New Workflow" button.
 
-       1) Name the workflow "Reciept".
+       1) Name the workflow "Receipt".
 
        3) You will now see an Event select dropdown.
-          1) Select "Event / Reciept"
+          1) Select "Event / Receipt"
 
           2) Confirm you choice by clicking the "Add Event" button
              just to the right of the select dropdown.
 
-       4) Enter a description "Google Analytics Reciept Workflow Event Template View"
+       4) Enter a description "Google Analytics Receipt Workflow Event Template View"
 
        5) Save modifications.
 
        6) Clear All Cache via both the administration gui and cli script.
           Please, clear all cache completely, this the most important step most people omit.
 
-       7) Note: Do not edit workflow setting, must remove and read to affect workflow event definiitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
+       7) Note: Do not edit workflow setting, must remove and read to affect workflow event definitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
 
 8.2.5 Install workflow to trigger
       ---------------------------
@@ -248,9 +251,9 @@ Configuration
 
        In the table "Workflow Triggers" you will see a list of available triggers.
 
-       On the line: "shop, sheckout, after, (Workflow Drop Down)"
+       On the line: "shop, checkout, after, (Workflow Drop Down)"
 
-       "Click" the dropdown select the reciept event you have just created.
+       "Click" the dropdown select the receipt event you have just created.
 
        Click Apply changes Button to save your trigger selection modifications
 
@@ -262,11 +265,11 @@ Configuration
 8.2.6 Review
       ------
 
-      Test. Test to ensure you installation has succesfully enabled the related modifications (dependencies)
+      Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
 
       Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
 
-      ReConfirm. Reconfirm the correct and successfull installation of the settings, template operators, workflow and trigger. 
+      Reconfirm. Reconfirm the correct and successful installation of the settings, template operators, workflow and trigger. 
 
       Clear All Caches. Be certain to clear all caches. Both within 
       - the eZ Publish Administration > Setup > Cache 
@@ -280,9 +283,9 @@ Configuration
    account information and confirm your order.
 
    Next, after account registration, order confirmation, payment,
-   etc workflow steps have been complated at the very last view to
+   etc workflow steps have been completed at the very last view to
    display the Google Analytics Order Completed / Js Submission / 
-   Reciept View just before redirecting the user finaly at the 
+   Receipt View just before redirecting the user finally at the 
    end to the order view list.
 
 

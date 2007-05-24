@@ -32,7 +32,7 @@ class GoogleAnalyticsOperators
     /*!
      * Constructor
      *
-     * \brief  
+     * \brief GoogleAnalyticsOperators Constructor
      * Sets the class variable 'Operators' which contains an array of available operators names.
      * Sets the class variable 'Debug' to false.
     */
@@ -159,6 +159,8 @@ class GoogleAnalyticsOperators
      * \see bc_ga_urchinOrder
      * \return bc_ga_urchinHeader html head javascript dependancies and javascript method call on the html body onload event.
      * \note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
+     * A typical usage:
+     * \code {'false'|bc_ga_urchinHeader()}
     */
     function bc_ga_urchinHeader()
     {
@@ -209,6 +211,8 @@ class GoogleAnalyticsOperators
      * \return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
      * \note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
      * \note This operator is required to be installed in the html end body/html of your pagelayout.tpl template override.
+     * A typical usage:
+     * \code {'false'|bc_ga_urchin()}
     */
     function bc_ga_urchin()
     {
@@ -255,6 +259,8 @@ class GoogleAnalyticsOperators
      * \param debug false (not used)
      * \return A string. The string contents of an xml attribute.
      * \note Used to fetch the value of the xml attributes of the template variable containing the order's shopaccounthandler customer address information in xml.
+     * A typical usage:
+     * \code {def $s=bc_ga_xmlAttributeValue( 'country', $xml_string )}
     */
     function bc_ga_xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
     {
@@ -303,6 +309,8 @@ class GoogleAnalyticsOperators
      * \param s string
      * \return An escaped string
      * \note A string with htmlcharacters and other special characters escaped; a string safe for use by javascript. Escaped Characters: , '
+     * A typical usage:
+     * \code {def $s=bc_ga_jsEscapedString( $text_string )}
     */
     function bc_ga_jsEscapedString( $s )
     {
@@ -329,6 +337,8 @@ class GoogleAnalyticsOperators
      * \param n numeric (to format)
      * \param p numeric (of decimal place control) 
      * \return A number rounded with decimal place control
+     * A typical usage:
+     * \code {def $s=bc_ga_formatNumericDecimal( $number )}
     */
     function bc_ga_formatNumericDecimal( $n, $p=2 )
     {
@@ -355,6 +365,8 @@ class GoogleAnalyticsOperators
      * \note The operator 'bc_ga_urchinOrder' is implimented in the template override, order.tpl
      * \note The operator bc_ga_urchinHeader is required by the bc_ga_urchinOrder operator.
      * \see bc_ga_urchinHeader
+     * A typical usage:
+     * \code {'false'|bc_ga_urchinOrder( $order_object )}
     */
     function bc_ga_urchinOrder( $order )
     {

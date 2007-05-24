@@ -1,20 +1,35 @@
-./googleanalytics
+.
+|-- autoloads
+|   |-- eztemplateautoload.php
+|   |-- eztemplateautoload.php~
+|   |-- googleanalyticsoperators.php
 |-- design
 |   `-- standard
 |       `-- templates
 |           |-- google
 |           |   `-- analytics
 |           |       |-- order.tpl
-|           |       `-- stats.tpl
-|           `-- pagelayout_analytics.tpl
+|           |-- pagelayout_analytics.tpl
 |-- doc
+|   |-- CONFIG
+|   |-- DEBUG
 |   |-- FAQ
+|   |-- HOWTO
 |   |-- INSTALL
 |   |-- LICENSE
 |   |-- README
+|   |-- TODO
+|   |-- USAGE
 |   |-- changelogs
-|   |   `-- CHANGELOG-1.0.0
+|   |   `-- 1.0
+|   |       |-- CHANGELOG-1.0.0
+|   |       `-- CHANGELOG-1.0.0-to-1.0.1
+|   |-- doxygen
+|   |   |-- Doxyfile
+|   |   |-- empty.html
+|   |   `-- generated
 |   `-- tree.txt
+|-- ezinfo.php
 |-- modules
 |-- settings
 |   |-- design.ini.append.php
@@ -22,11 +37,9 @@
 |   |-- module.ini.append
 |   |-- override.ini.append
 |   |-- site.ini.append.php
-|   |-- workflow.ini.append.php
-|   `-- wrap_operator.ini.append.php
+|   `-- workflow.ini.append.php
 `-- workflowtypes
     `-- event
         `-- ezreceipt
             `-- ezreceipttype.php
 
-12 directories, 17 files

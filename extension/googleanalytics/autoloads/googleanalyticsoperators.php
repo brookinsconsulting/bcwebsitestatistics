@@ -161,6 +161,7 @@ class GoogleAnalyticsOperators
      * \note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
      * A typical usage:
      * \code {'false'|bc_ga_urchinHeader()}
+     * \endcode
     */
     function bc_ga_urchinHeader()
     {
@@ -213,6 +214,7 @@ class GoogleAnalyticsOperators
      * \note This operator is required to be installed in the html end body/html of your pagelayout.tpl template override.
      * A typical usage:
      * \code {'false'|bc_ga_urchin()}
+     * \endcode
     */
     function bc_ga_urchin()
     {
@@ -261,6 +263,7 @@ class GoogleAnalyticsOperators
      * \note Used to fetch the value of the xml attributes of the template variable containing the order's shopaccounthandler customer address information in xml.
      * A typical usage:
      * \code {def $s=bc_ga_xmlAttributeValue( 'country', $xml_string )}
+     * \endcode
     */
     function bc_ga_xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
     {
@@ -311,6 +314,7 @@ class GoogleAnalyticsOperators
      * \note A string with htmlcharacters and other special characters escaped; a string safe for use by javascript. Escaped Characters: , '
      * A typical usage:
      * \code {def $s=bc_ga_jsEscapedString( $text_string )}
+     * \endcode
     */
     function bc_ga_jsEscapedString( $s )
     {
@@ -339,6 +343,7 @@ class GoogleAnalyticsOperators
      * \return A number rounded with decimal place control
      * A typical usage:
      * \code {def $s=bc_ga_formatNumericDecimal( $number )}
+     * \endcode
     */
     function bc_ga_formatNumericDecimal( $n, $p=2 )
     {
@@ -367,6 +372,7 @@ class GoogleAnalyticsOperators
      * \see bc_ga_urchinHeader
      * A typical usage:
      * \code {'false'|bc_ga_urchinOrder( $order_object )}
+     * \endcode
     */
     function bc_ga_urchinOrder( $order )
     {

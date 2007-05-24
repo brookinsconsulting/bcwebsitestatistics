@@ -1,7 +1,6 @@
 .
 |-- autoloads
 |   |-- eztemplateautoload.php
-|   |-- eztemplateautoload.php~
 |   |-- googleanalyticsoperators.php
 |-- design
 |   `-- standard

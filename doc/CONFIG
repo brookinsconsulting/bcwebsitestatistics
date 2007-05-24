@@ -2,7 +2,7 @@ Google Analytics extension CONFIG
 
 This document is a general configuration guide to the Google Analytics extension settings
 
-Google Analyticics Extension Settings
+Google Analytics Extension Settings
 =====================================
 
 1. Default Extension Settings
@@ -20,7 +20,7 @@ Google Analyticics Extension Settings
    Urchin=UA-994200-0
    HostName=disabled
    ShopName=eZ
-   Script=https://ssl.google-analytics.com/urchin.js
+   Script=http://www.google-analytics.com/urchin.js
    DebugMode=disabled
    TestMode=disabled
 
@@ -32,60 +32,59 @@ Google Analyticics Extension Settings
 2.1 Google Analytics Account Website Profile
     ----------------------------------------
 
-    First, if you do not already have a google analytics account 
+    First, if you do not already have a google analytics account
     for your website you should go sign up first,
     http://www.google.com/analytics/sign_up.html
 
 2.2 Installing extension
     --------------------
 
-2.3 Installing template dependancies
-    --------------------------------
-
-2.3.1 Configure page statatistics tracking
-      ------------------------------------
-
-      Configure your installation of eZ Publish for page statatistics tracking
-
-      Install the the page statatistics template operators into your existing pagelayout.tpl
-
-2.3.2 Configure webshop order statatistics tracking
-      ---------------------------------------------
-
-      Install the the order statatistics template operators, template override, workflow event and trigger dependancies
-
-3. Creating settings override file
-   -------------------------------
-
-   To change the following settings. 
-
-   First create a global setting override or siteaccess override 
-   of the setting file, extension/googleanalytics/settings/googleanalytics.ini.append.php
-
-   Examples of possible settings override file location
-
-   settings/googleanalytics.ini(.append(.php))
-   settings/override/googleanalytics.ini(.append(.php))
-   settings/siteaccess/example_com/googleanalytics.ini(.append(.php))
-
-3.2 Required Settings Modifications
+2.3 Creating settings override file
     -------------------------------
 
-3.3 Urchin
-    ------
+    To change the following settings.
 
-    First you will want to replace the default tracking code number.
+    First create a global setting override or siteaccess override
+    of the setting file, extension/googleanalytics/settings/googleanalytics.ini.append.php
 
-    Default: Urchin=UA-994200-0
-    Modification: Urchin=YOUR-Account-Number
-    Example: Urchin=UA-999042-0
+    Examples of possible settings override file location
 
-3.4 ShopName (Optional)
-    -------------------
+    settings/googleanalytics.ini(.append(.php))
+    settings/override/googleanalytics.ini(.append(.php))
+    settings/siteaccess/example_com/googleanalytics.ini(.append(.php))
 
-    If you wish to use the e-commerce order statistics features of google analytics 
-    you would replace the string, 'mycustomshopname' with brief string to represent your shopname uniquely.
+2.4 Required Settings Modifications
+    -------------------------------
 
-    Default: ShopName=eZ
-    Modification: ShopName=YourShopName
-    Example: ShopName=mycustomshopname
+2.4.1 Urchin
+      ------
+      First you will want to replace the default tracking code number.
+
+      Default: Urchin=UA-994200-0
+      Modification: Urchin=YOUR-Account-Number
+      Example: Urchin=UA-999042-0
+
+2.4.2 ShopName (Optional)
+      -------------------
+
+      If you wish to use the e-commerce order statistics features of google analytics
+      you would replace the string, 'mycustomshopname' with brief string to represent your shopname uniquely.
+
+      Default: ShopName=eZ
+      Modification: ShopName=YourShopName
+      Example: ShopName=mycustomshopname 
+
+2.5 Installing template dependencies
+    --------------------------------
+
+2.6 Configure page statistics tracking
+    ----------------------------------
+
+    Configure your installation of eZ Publish for page statistics tracking
+
+    Install the the page statistics template operators into your existing pagelayout.tpl
+
+2.6.2 Configure webshop order statistics tracking
+      -------------------------------------------
+
+      Install the the order statistics template operators, template override, workflow event and trigger dependencies

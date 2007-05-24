@@ -24,23 +24,17 @@ include_once( "lib/ezutils/classes/ezini.php" );
 
 /*!
   \class GoogleAnalyticsOperators googleanalyticsoperators.php
-  \brief Base documentation class for google analytics operators
-
-  These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics.
-
-  Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'.
-
-  The rest of the dependancies are handled internaly.
-
-  \Note This class is used by the googleanalytics extension
+  \brief Googole Analytics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the googleanalytics extension
+  \note Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'. The rest of the dependancies are handled internaly.
 */
 class GoogleAnalyticsOperators
 {
     /*!
-     Constructor
-
-    Sets the class variable 'Operators' which contains an array of available operators names.
-    Sets the class variable 'Debug' to false.
+     * Constructor
+     *
+     * \brief  
+     * Sets the class variable 'Operators' which contains an array of available operators names.
+     * Sets the class variable 'Debug' to false.
     */
     function GoogleAnalyticsOperators()
     {
@@ -49,7 +43,7 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Returns the operators provided in this class.
+     * \return The operators provided in this class.
     */
     function &operatorList()
     {
@@ -57,9 +51,9 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return true to tell the template engine that the parameter list
-     exists per operator type, this is needed for operator classes
-     that have multiple operators.
+     * \return true to the template engine that the parameter list
+     * exists per operator type, this is needed for operator classes
+     * that have multiple operators.
     */
     function namedParameterPerOperator()
     {
@@ -67,19 +61,19 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \ Returns an array of named parameters, this allows for easier retrieval
-     of operator parameters. This also requires the function modify() has an extra
-     parameter called $named_params.
- 
-     The position of each element (starts at 0) represents the position of the original
-     sequenced parameters. The key of the element is used as parameter name, while the
-     contents define the type and requirements.
-
-     The keys of each element content is:
-     * type - defines the type of parameter allowed
-     * required - boolean which says if the parameter is required or not, if missing
-     and required an error is displayed
-     * default - the default value if the parameter is missing
+     * \return A array of named parameters, this allows for easier retrieval
+     * of operator parameters. This also requires the function modify() has an extra
+     * parameter called $named_params.
+     *
+     * The position of each element (starts at 0) represents the position of the original
+     * sequenced parameters. The key of the element is used as parameter name, while the
+     * contents define the type and requirements.
+     *
+     * The keys of each element content is:
+     * * type - defines the type of parameter allowed
+     * * required - boolean which says if the parameter is required or not, if missing
+     * and required an error is displayed
+     * * default - the default value if the parameter is missing
     */
     function namedParameterList()
     {
@@ -112,8 +106,8 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Returns and executes the requested operator(s).
-      Also checks operator names, and calls the appropriate functions and arguments.
+     * \brief Also checks operator names, and calls the appropriate functions and arguments.
+     * \return Returned results of requested executed operator(s).
     */
     function modify( &$tpl, &$operatorName, &$operatorParameters, &$rootNamespace,
                      &$currentNamespace, &$operatorValue, &$namedParameters )
@@ -159,8 +153,12 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return bc_ga_urchinHeader html head javascript dependancies and javascript method call on the html body onload event.
-     \Note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
+     * \public
+     * \static
+     * \brief Secondary Google Analytics template operator
+     * \see bc_ga_urchinOrder
+     * \return bc_ga_urchinHeader html head javascript dependancies and javascript method call on the html body onload event.
+     * \note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
     */
     function bc_ga_urchinHeader()
     {
@@ -205,9 +203,12 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
-     \Note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
-     \Note This operator is required to be installed in the html end body/html of your pagelayout.tpl template override.
+     * \public
+     * \static
+     * \brief Primary Google Analytics template operator
+     * \return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
+     * \note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
+     * \note This operator is required to be installed in the html end body/html of your pagelayout.tpl template override.
     */
     function bc_ga_urchin()
     {
@@ -245,9 +246,15 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return the string contents of an xml attribute.
-     \Note The operator 'bc_ga_xmlAttributeValue' is implimented in the template override, order.tpl
-     \Note Used to fetch the value of the xml attributes of the template variable containing the order's shopaccounthandler customer address information in xml.
+     * \public
+     * \static
+     * \brief The operator 'bc_ga_xmlAttributeValue' is implimented in the method 'bc_ga_urchinOrder'.
+     * \param name string (name of xml attribute)
+     * \param data string (xml string)
+     * \param ret false (default return value)
+     * \param debug false (not used)
+     * \return A string. The string contents of an xml attribute.
+     * \note Used to fetch the value of the xml attributes of the template variable containing the order's shopaccounthandler customer address information in xml.
     */
     function bc_ga_xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
     {
@@ -290,9 +297,12 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return a string with htmlcharacters and other special characters escaped; a string safe for use by javascript.
-     \Note Escaped Characters: , '
-     \Note The operator 'bc_ga_jsEscapedString' is implimented in the template override, order.tpl
+     * \public
+     * \static
+     * \brief The operator 'bc_ga_jsEscapedString' is implimented in the method 'bc_ga_urchinOrder'. 
+     * \param s string
+     * \return An escaped string
+     * \note A string with htmlcharacters and other special characters escaped; a string safe for use by javascript. Escaped Characters: , '
     */
     function bc_ga_jsEscapedString( $s )
     {
@@ -313,8 +323,12 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return a number rounded with decimal place control
-     \Note Used by order.tpl
+     * \public
+     * \static
+     * \brief The operator 'bc_ga_formatNumericDecimal' is implimented in the method 'bc_ga_urchinOrder'. 
+     * \param n numeric (to format)
+     * \param p numeric (of decimal place control) 
+     * \return A number rounded with decimal place control
     */
     function bc_ga_formatNumericDecimal( $n, $p=2 )
     {
@@ -333,11 +347,16 @@ class GoogleAnalyticsOperators
     }
 
     /*!
-     \Return Bc_Ga_UrchinOrderTracker javascript method call with account settings
-     \Note The operator bc_ga_urchinHeader is required by the bc_ga_urchinOrder operator.
-     \Note The operator 'bc_ga_urchinOrder' is implimented in the template override, order.tpl
+     * \public
+     * \static
+     * \brief Secondary Google Analytics template operator
+     * \param order An eZOrder object argument. Required.
+     * \return bc_ga_urchinOrder javascript method call with account settings
+     * \note The operator 'bc_ga_urchinOrder' is implimented in the template override, order.tpl
+     * \note The operator bc_ga_urchinHeader is required by the bc_ga_urchinOrder operator.
+     * \see bc_ga_urchinHeader
     */
-    function bc_ga_urchinOrder( $order_id )
+    function bc_ga_urchinOrder( $order )
     {
         $ret = false;
 
@@ -355,7 +374,7 @@ class GoogleAnalyticsOperators
         {
             include_once( 'kernel/classes/ezorder.php' );
 
-            $order_id = $order_id->ID;
+            $order_id = $order->ID;
             $order = new eZOrder( $order_id );
             // print_r( $order );
 
@@ -411,10 +430,12 @@ class GoogleAnalyticsOperators
     }
 
     /// \privatesection
-    /// \Returns the class variable 'Operators' which contains an array of available operators names.
+
+    /// \return The class variable 'Operators' which contains an array of available operators names.
     var $Operators;
 
-    /// \Returns the class variable 'Debug' to false.
+    /// \privatesection
+    /// \return The class variable 'Debug' to false.
     var $Debug;
 }
 

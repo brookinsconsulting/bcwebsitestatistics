@@ -77,6 +77,32 @@ class GoogleAnalyticsOperators
     */
     function namedParameterList()
     {
+
+
+        return array( 'bc_ga_urchinOrder' => array( 'order' => array( 'type' => 'array', 'required' => true, 'default' => false )
+                                             ),
+
+                      'bc_ga_xmlAttributeValue' => array( 'name' => array( 'type' => 'string', 'required' => true, 'default' => false ),
+                                                    'data' => array( 'type' => 'string', 'required' => true, 'default' => false )
+                                             ),
+
+                      'bc_ga_jsEscapedString' =>  array( 'string' => array( 'type' => 'string',
+                                                   'required' => true,
+                                                   'default' => '' )
+                                              ),
+
+                      'bc_ga_formatNumericDecimal' => array( 'number' => array( 'type' => 'string',
+                                                       'required' => true,
+                                                       'default' => '' ),
+                                                       'places' => array( 'type' => 'string',
+                                                       'required' => true,
+                                                       'default' => '' )
+                                              )
+                      );
+
+
+
+      /*
         return array( 'bc_ga_urchin' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
                                              ),
 
@@ -103,6 +129,7 @@ class GoogleAnalyticsOperators
                                                        'default' => '' )
                                               )
                       );
+      */
     }
 
     /*!
@@ -239,7 +266,7 @@ class GoogleAnalyticsOperators
           {
             $ret .= '  _udn = "'. $udn .'"'.";\n";
           }
-          $ret .= "  bc_ga_urchin();\n";
+          $ret .= "  urchinTracker();\n";
           // $ret .= '--> '."\n";
           $ret .= '</script>';
         }

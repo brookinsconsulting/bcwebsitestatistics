@@ -2,17 +2,21 @@
     <h2>{"Order Completed #%order_id "|i18n("design/base/shop",,
          hash( '%order_id', $order.order_nr,
                '%order_status', $order.status_name ) )}</h2>
-    <br />
-    <div style="width: 100%;  color: #565969; font-size: 14px; font-weight: bold; background-color: #EBEEEF; float: left; padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">
-    <div style="float: left;">1. Shopping Cart</div>
-    <div style="float: left; padding-left: 40px;">2. Billing &amp; Shipping</div>
-    <div style="float: left; padding-left: 40px;">3. Confirmation</div>
-    <div style="float: left; padding-left: 40px;">4. Payment info</div>
-    <div style="float: left; padding-left: 40px; color: #308d9d;">5. Order Completed</div>
-    <div style="float: left; padding-left: 40px;">6. Review order receipt</div>
-    </div>
+
+	<div class="shop-confirmorder">
+	<ul>
+        	<li>1. {"Shopping Cart"|i18n("design/standard/templates/google/analytics")}</li>
+	        <li>2. {"Billing &amp; Shipping"|i18n("design/standard/templates/google/analytics")}</li>
+        	<li>3. {"Confirmation"|i18n("design/standard/templates/google/analytics")}</li>
+        	<li>4. {"Payment info"|i18n("design/standard/templates/google/analytics")}</li>
+        	<li class="selected">5. {"Order Completed"|i18n("design/standard/templates/google/analytics")}</li>
+        	<li>6. {"Review order receipt"|i18n("design/standard/templates/google/analytics")}</li>
+	</ul>
+	</div>
+
     <div class="break"></div>
     <br />
+
     <form method="post" name="basket" action={"/shop/checkout"|ezurl}>
     <input type="hidden" name="validate" value="validate" />
     <div align="right"><input type="image" name="StoreChangesButton" value="Store" src={"images/continue.gif"|ezdesign()} /></div>

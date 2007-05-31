@@ -23,20 +23,20 @@
 include_once( "lib/ezutils/classes/ezini.php" );
 
 /*!
-  \class GoogleAnalyticsOperators googleanalyticsoperators.php
-  \brief Googole Analytics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the googleanalytics extension
+  \class BCGoogleAnalyticsOperators bcgoogleanalyticsoperators.php
+  \brief Googole Analytics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcgoogleanalytics extension
   \note Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'. The rest of the dependancies are handled internaly.
 */
-class GoogleAnalyticsOperators
+class BCGoogleAnalyticsOperators
 {
     /*!
      * Constructor
      *
-     * \brief GoogleAnalyticsOperators Constructor
+     * \brief BCGoogleAnalyticsOperators Constructor
      * Sets the class variable 'Operators' which contains an array of available operators names.
      * Sets the class variable 'Debug' to false.
     */
-    function GoogleAnalyticsOperators()
+    function BCGoogleAnalyticsOperators()
     {
         $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' );
         $this->Debug = false;
@@ -182,7 +182,7 @@ class GoogleAnalyticsOperators
     /*!
      * \public
      * \static
-     * \brief Secondary Google Analytics template operator
+     * \brief Secondary BCGoogle Analytics template operator
      * \see bc_ga_urchinOrder
      * \return bc_ga_urchinHeader html head javascript dependancies and javascript method call on the html body onload event.
      * \note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
@@ -195,9 +195,9 @@ class GoogleAnalyticsOperators
         $ret = "</head>\n<body>";
 
         // Settings
-        $ini =& eZINI::instance( 'googleanalytics.ini' );
-        $submit = $ini->variable( 'GoogleAnalyticsWorkflow', 'OrderSubmitToGoogle');
-        $uacct = $ini->variable( 'GoogleAnalyticsWorkflow', 'Urchin');
+        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
+        $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle');
+        $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
 
         // Checks
         if( $submit == 'enabled' and $uacct != 'disabled' )
@@ -206,13 +206,13 @@ class GoogleAnalyticsOperators
           include_once( 'kernel/common/eztemplatedesignresource.php' );
           $res =& eZTemplateDesignResource::instance();
 
-          // $res->setKeys( array( array( 'googleanalytics', '1' ) ) );
+          // $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
           $keys = $res->keys();
 
           // print_r( $keys );
           // if ( array_key_exists( 'section', $keys ) ) {
 
-          if ( array_key_exists( 'googleanalytics', $keys ) ) {
+          if ( array_key_exists( 'bcgoogleanalytics', $keys ) ) {
               $ret = '<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'</head>'."\n".'<body onload="__utmSetTrans();">';
           }
           else
@@ -248,12 +248,12 @@ class GoogleAnalyticsOperators
         $ret = false;
 
         // Settings
-        $ini =& eZINI::instance( 'googleanalytics.ini' );
+        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
 
-        $submit = $ini->variable( 'GoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
-        $uacct = $ini->variable( 'GoogleAnalyticsWorkflow', 'Urchin');
-        $udn = $ini->variable( 'GoogleAnalyticsWorkflow', 'HostName');
-        $script_url = $ini->variable( 'GoogleAnalyticsWorkflow', 'Script');
+        $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
+        $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
+        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
+        $script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
 
         // Checks
         if( $submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )
@@ -406,13 +406,13 @@ class GoogleAnalyticsOperators
         $ret = false;
 
         // Settings
-        $ini =& eZINI::instance( 'googleanalytics.ini' );
+        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
 
-        $submit = $ini->variable( 'GoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
-        $uacct = $ini->variable( 'GoogleAnalyticsWorkflow', 'Urchin');
-        $udn = $ini->variable( 'GoogleAnalyticsWorkflow', 'HostName');
-        $script_url = $ini->variable( 'GoogleAnalyticsWorkflow', 'Script');
-        $shop_name = $ini->variable( 'GoogleAnalyticsWorkflow', 'ShopName');
+        $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
+        $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
+        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
+        $script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
+        $shop_name = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'ShopName');
 
         // Checks
         if( $submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )

@@ -46,7 +46,7 @@ class eZReceiptType extends eZWorkflowEventType
     */
     function eZReceiptType()
     {
-        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "Google Analytics - Order Statistics Submission and Receipt" ) );
+        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "BC Google Analytics - Order Statistics Submission and Order Completed View" ) );
 
         $this->setTriggerTypes( array( 'shop' => array(
                                 'checkout' => array (
@@ -60,18 +60,18 @@ class eZReceiptType extends eZWorkflowEventType
         $requestUri = eZSys::requestURI();
 
         // Fetch custom settings
-        $ini =& eZINI::instance( 'googleanalytics.ini' );
-        $test = $ini->variable( 'GoogleAnalyticsWorkflow', 'TestMode' ) == 'enabled' ? true : false;
-        $debug = $ini->variable( 'GoogleAnalyticsWorkflow', 'DebugMode' ) == 'enabled' ? true : false;
-        $urchin = $ini->variable( 'GoogleAnalyticsWorkflow', 'Urchin' );
-        $udn = $ini->variable( 'GoogleAnalyticsWorkflow', 'HostName' );
+        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
+        $test = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'TestMode' ) == 'enabled' ? true : false;
+        $debug = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'DebugMode' ) == 'enabled' ? true : false;
+        $urchin = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin' );
+        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName' );
 
         // Setting to control submission of information
         // to google via client side script (javascript)
 
-        if ( $ini->hasVariable( 'GoogleAnalyticsWorkflow', 'OrderSubmitToGoogle' ) )
+        if ( $ini->hasVariable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle' ) )
         {
-          $settingSubmitToGoogle = $ini->variable( 'GoogleAnalyticsWorkflow', 'OrderSubmitToGoogle' ) == 'enabled' ? true : false;
+          $settingSubmitToGoogle = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle' ) == 'enabled' ? true : false;
         }
         else
         {

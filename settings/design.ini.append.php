@@ -1,6 +1,6 @@
-<?php /* #?ini charset="iso-8859-1"?
+<?php /* #?ini charset="utf-8"?
 
 [ExtensionSettings]
-DesignExtensions[]=googleanalytics
+DesignExtensions[]=bcgoogleanalytics
 
 */ ?>

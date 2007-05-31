@@ -1,19 +1,19 @@
-Google Analytics extension README
+BC Google Analytics extension README
 
-What is the Google Analytics extension?
+What is the BC Google Analytics extension?
 ================================
 
-Google Analytics is a true eZ publish extension
+BC Google Analytics is a true eZ publish extension
 that provides the fetching and submission of
 information from client browser back to google
 like page view statistics and order purchase 
 statistics.
 
 
-Google Analytics version
+BC Google Analytics version
 =======================
 
-The current version of Google Analytics is 1.0.1.
+The current version of BC Google Analytics is 1.0.1.
 Last Updated: May 23, 2007
 
 You can find details about changes for this
@@ -33,7 +33,7 @@ For more information or questions please contact license@brookinsconsulting.com
 Requirements
 ============
 
-The following requirements exists for using Google Analytics extension:
+The following requirements exists for using BC Google Analytics extension:
 
 o  eZ publish version:
 
@@ -56,22 +56,22 @@ o  Configured Google Analytics Website Profile
 Installation
 ============
 
-Details on installing Google Analytics located in the file doc/INSTALL.
+Details on installing BC Google Analytics located in the file doc/INSTALL.
 
 Configuration
 =============
 
-Details on configuring Google Analytics located in the file doc/CONFIG.
+Details on configuring BC Google Analytics located in the file doc/CONFIG.
 
 HOWTO
 =====
 
-An article on howto use the Google Analytics located in the file doc/HOWTO.
+An article on howto use the BC Google Analytics located in the file doc/HOWTO.
 
 Usage
 =====
 
-Details on using Google Analytics located in the file doc/USAGE.
+Details on using BC Google Analytics located in the file doc/USAGE.
 
 Troubleshooting
 ===============

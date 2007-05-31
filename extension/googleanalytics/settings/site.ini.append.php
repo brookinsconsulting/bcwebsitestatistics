@@ -1,6 +1,6 @@
-<? #?ini charset="iso-8859-1"?
+<?php /* #?ini charset="utf-8"?
 
 [TemplateSettings]
-AutoloadPathList[]=extension/googleanalytics/autoloads
+AutoloadPathList[]=extension/bcgoogleanalytics/autoloads
 
-?>
+*/ ?>

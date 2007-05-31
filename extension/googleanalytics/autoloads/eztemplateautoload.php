@@ -1,12 +1,12 @@
 <?php
 //
-// Definition of GoogleAnalyticsOperators autoload
+// Definition of BCGoogleAnalyticsOperators autoload
 //
 // Created on: <14-05-2007 08:42:02 gb>
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
-// SOFTWARE NAME: Google Analytics
+// SOFTWARE NAME: BC Google Analytics
 // COPYRIGHT NOTICE: Copyright (C) 2001-2007 Brookins Consulting
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -27,12 +27,12 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-// eZDebug::writeWarning( 'GoogleAnalyticsOperators::autoload : load template operator' );
+// eZDebug::writeWarning( 'BCGoogleAnalyticsOperators::autoload : load template operator' );
 
 // Operator autoloading
 $eZTemplateOperatorArray = array();
-$eZTemplateOperatorArray[] = array( 'script' => 'extension/googleanalytics/autoloads/googleanalyticsoperators.php',
-                                    'class' => 'GoogleAnalyticsOperators',
+$eZTemplateOperatorArray[] = array( 'script' => 'extension/googleanalytics/autoloads/bcgoogleanalyticsoperators.php',
+                                    'class' => 'BCGoogleAnalyticsOperators',
                                     'operator_names' => array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' ) );
 
 ?>

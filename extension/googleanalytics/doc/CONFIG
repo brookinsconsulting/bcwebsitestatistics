@@ -1,8 +1,8 @@
-Google Analytics extension CONFIG
+BC Google Analytics extension CONFIG
 
-This document is a general configuration guide to the Google Analytics extension settings
+This document is a general configuration guide to the BC Google Analytics extension settings
 
-Google Analytics Extension Settings
+BC Google Analytics Extension Settings
 =====================================
 
 1. Default Extension Settings
@@ -10,11 +10,11 @@ Google Analytics Extension Settings
 
    Upon installing and activating the extension, one must alter these configuration settings.
 
-   File: googleanalytics/settings/googleanalytics.ini.append.php
+   File: googleanalytics/settings/bcgoogleanalytics.ini.append.php
 
    <?php /* #?ini charset="iso-8859-1"?
 
-   [GoogleAnalyticsWorkflow]
+   [BCGoogleAnalyticsWorkflow]
    OrderSubmitToGoogle=enabled
    PageSubmitToGoogle=enabled
    Urchin=UA-994200-0
@@ -29,7 +29,7 @@ Google Analytics Extension Settings
 2. Requirements
    ------------
 
-2.1 Google Analytics Account Website Profile
+2.1 BC Google Analytics Account Website Profile
     ----------------------------------------
 
     First, if you do not already have a google analytics account
@@ -45,13 +45,13 @@ Google Analytics Extension Settings
     To change the following settings.
 
     First create a global setting override or siteaccess override
-    of the setting file, extension/googleanalytics/settings/googleanalytics.ini.append.php
+    of the setting file, extension/bcgoogleanalytics/settings/bcgoogleanalytics.ini.append.php
 
     Examples of possible settings override file location
 
-    settings/googleanalytics.ini(.append(.php))
-    settings/override/googleanalytics.ini(.append(.php))
-    settings/siteaccess/example_com/googleanalytics.ini(.append(.php))
+    settings/bcgoogleanalytics.ini(.append(.php))
+    settings/override/bcgoogleanalytics.ini(.append(.php))
+    settings/siteaccess/example_com/bcgoogleanalytics.ini(.append(.php))
 
 2.4 Required Settings Modifications
     -------------------------------

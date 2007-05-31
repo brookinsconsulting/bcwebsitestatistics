@@ -1,9 +1,9 @@
-<?php /* #?ini charset="iso-8859-1"?
+<?php /* #?ini charset="utf-8"?
 # eZ publish configuration file for workflows.
 
 [EventSettings]
-RepositoryDirectories[]=extension/googleanalytics/workflowtypes
-ExtensionDirectories[]=googleanalytics
+RepositoryDirectories[]=extension/bcgoogleanalytics/workflowtypes
+ExtensionDirectories[]=bcgoogleanalytics
 AvailableEventTypes[]=event_ezreceipt
 
 */ ?>

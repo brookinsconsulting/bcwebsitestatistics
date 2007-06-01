@@ -31,7 +31,7 @@
 
 // Operator autoloading
 $eZTemplateOperatorArray = array();
-$eZTemplateOperatorArray[] = array( 'script' => 'extension/googleanalytics/autoloads/bcgoogleanalyticsoperators.php',
+$eZTemplateOperatorArray[] = array( 'script' => 'extension/bcgoogleanalytics/autoloads/bcgoogleanalyticsoperators.php',
                                     'class' => 'BCGoogleAnalyticsOperators',
                                     'operator_names' => array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' ) );
 

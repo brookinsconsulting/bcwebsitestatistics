@@ -253,8 +253,18 @@ class BCGoogleAnalyticsOperators
         $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
         $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
         $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
-        $script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
+        $insecure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
+	$secure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'SecureScript');
 
+	if( $_SERVER['HTTPS'] == "on" )
+	{
+	  $script_url = $secure_script_url;
+	} 
+	else 
+	{
+	  $script_url = $insecure_script_url;
+	}
+	
         // Checks
         if( $submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )
         {

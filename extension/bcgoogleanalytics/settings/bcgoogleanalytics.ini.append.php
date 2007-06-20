@@ -7,7 +7,7 @@ Urchin=UA-994200-0
 HostName=disabled
 ShopName=eZPublish
 Script=http://www.google-analytics.com/urchin.js
-# Script=https://ssl.google-analytics.com/urchin.js
+SecureScript=https://ssl.google-analytics.com/urchin.js
 TestMode=disabled
 DebugMode=disabled
 

@@ -241,20 +241,20 @@ Page 4 - Configuration of BC Google Analytics extension
 
        1) Name the workflow "Receipt".
 
-       3) You will now see an Event select dropdown.
+       2) You will now see an Event select dropdown.
           1) Select "Event / BC Google Analytics - Order Statistics Submission and Order Completed View"
 
           2) Confirm you choice by clicking the "Add Event" button
              just to the right of the select dropdown.
 
-       4) Enter a description "BC Google Analytics Receipt Workflow Event Template View"
+       3) Enter a description "BC Google Analytics Receipt Workflow Event Template View"
 
-       5) Click the 'Ok' to save these modifications.
+       4) Click the 'Ok' to save these modifications.
 
-       6) Clear All Cache via both the administration gui and cli script.
+       5) Clear All Cache via both the administration gui and cli script.
           Please, clear all cache completely, this the most important step most people omit.
 
-       7) Note: Do not edit workflow setting, must remove and read to affect workflow event definitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
+       6) Note: Do not edit workflow setting, must remove and read to affect workflow event definitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
 
 4.5.5 Install workflow to trigger
 

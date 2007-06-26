@@ -19,7 +19,10 @@
 
     <form method="post" name="basket" action={"/shop/checkout"|ezurl}>
     <input type="hidden" name="validate" value="validate" />
-    <div align="right"><input type="image" name="StoreChangesButton" value="Store" src={"images/continue.gif"|ezdesign()} /></div>
+    <div align="right">
+	{* <input type="image" name="StoreChangesButton" value="View Order Reciept" src={"images/continue.gif"|ezdesign()} /> *}
+	 <input class="button" type="submit" name="StoreChangesButton" value="{'View Order Reciept'|i18n('design/base/shop')}" />
+    </div>
     </form>
 
     {shop_account_view_gui view=html order=$order}

@@ -206,14 +206,14 @@ class BCGoogleAnalyticsOperators
           include_once( 'kernel/common/eztemplatedesignresource.php' );
           $res =& eZTemplateDesignResource::instance();
 
-          // $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
+          // Workflow sets the key variable: $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
           $keys = $res->keys();
 
-          // print_r( $keys );
-          // if ( array_key_exists( 'section', $keys ) ) {
+          // If you wish to view the keys,
+	  // echo "<h1>"; print_r( $keys ); echo "</h1>";
 
           if ( array_key_exists( 'bcgoogleanalytics', $keys ) ) {
-              $ret = '<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'</head>'."\n".'<body onload="__utmSetTrans();">';
+	      $ret = '<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } __utmSetTrans(); } </script></head>'."\n".'<body>';
           }
           else
           {
@@ -256,7 +256,8 @@ class BCGoogleAnalyticsOperators
         $insecure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
 	$secure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'SecureScript');
 
-	if( $_SERVER['HTTPS'] == "on" )
+	
+	if( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" )
 	{
 	  $script_url = $secure_script_url;
 	} 

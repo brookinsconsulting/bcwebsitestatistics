@@ -83,7 +83,7 @@ class eZReceiptType extends eZWorkflowEventType
           // Add hook to trigger template override of pagelayout.tpl
           include_once( 'kernel/common/eztemplatedesignresource.php' );
           $res =& eZTemplateDesignResource::instance();
-          $res->setKeys( array( array( 'googleanalytics', '1' ) ) );
+          $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
 
           // Template Settings
           $tpl_name = "design:google/analytics/order.tpl";

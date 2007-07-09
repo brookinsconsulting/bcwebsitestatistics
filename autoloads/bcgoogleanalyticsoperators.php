@@ -38,7 +38,7 @@ class BCGoogleAnalyticsOperators
     */
     function BCGoogleAnalyticsOperators()
     {
-        $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinHeader', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' );
+        $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' );
         $this->Debug = false;
     }
 
@@ -77,8 +77,6 @@ class BCGoogleAnalyticsOperators
     */
     function namedParameterList()
     {
-
-
         return array( 'bc_ga_urchinOrder' => array( 'order' => array( 'type' => 'array', 'required' => true, 'default' => false )
                                              ),
 
@@ -99,37 +97,6 @@ class BCGoogleAnalyticsOperators
                                                        'default' => '' )
                                               )
                       );
-
-
-
-      /*
-        return array( 'bc_ga_urchin' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
-                                             ),
-
-                      'bc_ga_urchinHeader' => array( 'false' => array( 'type' => 'array', 'required' => false, 'default' => false )
-                                             ),
-
-                      'bc_ga_urchinOrder' => array( 'order' => array( 'type' => 'array', 'required' => true, 'default' => false )
-                                             ),
-
-                      'bc_ga_xmlAttributeValue' => array( 'name' => array( 'type' => 'string', 'required' => true, 'default' => false ),
-                                                    'data' => array( 'type' => 'string', 'required' => true, 'default' => false )
-                                             ),
-
-                      'bc_ga_jsEscapedString' =>  array( 'string' => array( 'type' => 'string',
-                                                   'required' => true,
-                                                   'default' => '' )
-                                              ),
-
-                      'bc_ga_formatNumericDecimal' => array( 'number' => array( 'type' => 'string',
-                                                       'required' => true,
-                                                       'default' => '' ),
-                                                       'places' => array( 'type' => 'string',
-                                                       'required' => true,
-                                                       'default' => '' )
-                                              )
-                      );
-      */
     }
 
     /*!
@@ -144,12 +111,6 @@ class BCGoogleAnalyticsOperators
             case 'bc_ga_urchin':
             {
                 $operatorValue = $this->bc_ga_urchin( );
-            }
-            break;
-
-            case 'bc_ga_urchinHeader':
-            {
-                $operatorValue = $this->bc_ga_urchinHeader( );
             }
             break;
 
@@ -182,25 +143,53 @@ class BCGoogleAnalyticsOperators
     /*!
      * \public
      * \static
-     * \brief Secondary BCGoogle Analytics template operator
+     * \brief Primary BCGoogle Analytics template operator
      * \see bc_ga_urchinOrder
-     * \return bc_ga_urchinHeader html head javascript dependancies and javascript method call on the html body onload event.
-     * \note This operator is required to be installed in the html head/body of your pagelayout.tpl by the bc_ga_urchinOrder operator.
+     * \return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
+     * \note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
+     * \note This operator is required to be installed in the html head of your pagelayout.tpl template override.
      * A typical usage:
-     * \code {'false'|bc_ga_urchinHeader()}
+     * \code {'false'|bc_ga_urchin()}
      * \endcode
     */
-    function bc_ga_urchinHeader()
+    function bc_ga_urchin()
     {
-        $ret = "</head>\n<body>";
-
         // Settings
         $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
-        $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle');
+        $page_submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
+        $order_submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle');
         $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
+        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
+        $insecure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
+	$secure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'SecureScript');
+	
+	if( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" )
+	{
+	  $script_url = $secure_script_url;
+	} 
+	else 
+	{
+	  $script_url = $insecure_script_url;
+	}
+
+	$ret = false;
+	
+        // Checks
+        if( $page_submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )
+        {
+          $ret .= "\n".'<script src="'. "$script_url". '" type="text/javascript"> </script>'."\n";
+          $ret .= '<script type="text/javascript" language="Javascript">';
+          $ret .= ' _uacct = "'. $uacct .'";';
+
+          if ( $udn != 'disabled' )
+          {
+            $ret .= ' _udn = "'. $udn .'";';
+          }
+          $ret .= ' </script>';
+        }
 
         // Checks
-        if( $submit == 'enabled' and $uacct != 'disabled' )
+        if( $order_submit == 'enabled' and $uacct != 'disabled' )
         {
           // Add hook to detect the template override of pagelayout.tpl
           include_once( 'kernel/common/eztemplatedesignresource.php' );
@@ -213,78 +202,17 @@ class BCGoogleAnalyticsOperators
 	  // echo "<h1>"; print_r( $keys ); echo "</h1>";
 
           if ( array_key_exists( 'bcgoogleanalytics', $keys ) ) {
-	      $ret = '<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } __utmSetTrans(); } </script></head>'."\n".'<body>';
+	      $ret .= "\n".'<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); __utmSetTrans(); } </script>';
           }
           else
           {
-              $ret = "</head>\n<body>";
+	      $ret .= "\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); } </script>';
           }
         }
         else
         {
-            $ret = "</head>\n<body>";
+	      $ret .= "\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); } </script>';
         }
-
-        /*
-        if ( $debug )
-            ezDebug::writeNotice( $name, 'bc_ga_xmlAttributeValue:name' ); */
-
-        return $ret;
-    }
-
-    /*!
-     * \public
-     * \static
-     * \brief Primary Google Analytics template operator
-     * \return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
-     * \note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
-     * \note This operator is required to be installed in the html end body/html of your pagelayout.tpl template override.
-     * A typical usage:
-     * \code {'false'|bc_ga_urchin()}
-     * \endcode
-    */
-    function bc_ga_urchin()
-    {
-        $ret = false;
-
-        // Settings
-        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
-
-        $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
-        $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
-        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
-        $insecure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
-	$secure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'SecureScript');
-
-	
-	if( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" )
-	{
-	  $script_url = $secure_script_url;
-	} 
-	else 
-	{
-	  $script_url = $insecure_script_url;
-	}
-	
-        // Checks
-        if( $submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )
-        {
-          $ret .= '<script src="'. "$script_url". '" type="text/javascript"> </script>'."\n";
-          $ret .= '<script type="text/javascript">'."\n";
-          // $ret .= '<!-- '."\n";
-          $ret .= '  _uacct = "'. $uacct .'";'."\n";
-          if ( $udn != 'disabled' )
-          {
-            $ret .= '  _udn = "'. $udn .'"'.";\n";
-          }
-          $ret .= "  urchinTracker();\n";
-          // $ret .= '--> '."\n";
-          $ret .= '</script>';
-        }
-
-        /*
-        if ( $debug )
-            ezDebug::writeNotice( $name, 'bc_ga_xmlAttributeValue:name' ); */
 
         return $ret;
     }

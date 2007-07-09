@@ -1,148 +1,183 @@
-<div class="shop-basket">
-    <h2>{"Order Completed #%order_id "|i18n("design/base/shop",,
-         hash( '%order_id', $order.order_nr,
-               '%order_status', $order.status_name ) )}</h2>
+<div class="border-box">
+<div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
+<div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
 
-	<div class="shop-confirmorder">
-	<ul>
-        	<li>1. {"Shopping Cart"|i18n("design/standard/templates/google/analytics")}</li>
-	        <li>2. {"Billing &amp; Shipping"|i18n("design/standard/templates/google/analytics")}</li>
-        	<li>3. {"Confirmation"|i18n("design/standard/templates/google/analytics")}</li>
-        	<li>4. {"Payment info"|i18n("design/standard/templates/google/analytics")}</li>
-        	<li class="selected">5. {"Order Completed"|i18n("design/standard/templates/google/analytics")}</li>
-        	<li>6. {"Review order receipt"|i18n("design/standard/templates/google/analytics")}</li>
-	</ul>
-	</div>
+<div class="shop-confirmorder">
 
-    <div class="break"></div>
-    <br />
+<ul>
+    <li>1. {"Shopping basket"|i18n("design/standard/templates/google/analytics")}</li>
+    <li>2. {"Account information"|i18n("design/standard/templates/google/analytics")}{* "Billing &amp; Shipping"|i18n("design/standard/templates/google/analytics")*}</li>
+    <li>3. {"Confirm order"|i18n("design/standard/templates/google/analytics")}{* "Confirmation"|i18n("design/standard/templates/google/analytics") *}</li>
+    {* <li>4. {"Payment info"|i18n("design/standard/templates/google/analytics")}</li> *}
+    <li class="selected">4. {* 5. *}{"Order Completed"|i18n("design/standard/templates/google/analytics")}</li>
+    <li>5. {* 6. *}{"Review order receipt"|i18n("design/standard/templates/google/analytics")}</li>
+</ul>
+
+</div>
+
+</div></div></div>
+<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
+</div>
+
+<div class="border-box">
+<div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
+<div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
+
+<div class="shop-orderview">
+
+<div class="attribute-header">
+  <h1 class="long">{"Order completed #%order_id "|i18n("design/ezwebin/shop/orderview",,
+       hash( '%order_id', $order.order_nr,
+             '%order_status', $order.status_name ) )}</h1>
 
     <form method="post" name="basket" action={"/shop/checkout"|ezurl}>
     <input type="hidden" name="validate" value="validate" />
     <div align="right">
-	{* <input type="image" name="StoreChangesButton" value="View Order Reciept" src={"images/continue.gif"|ezdesign()} /> *}
-	 <input class="button" type="submit" name="StoreChangesButton" value="{'View Order Reciept'|i18n('design/base/shop')}" />
+        {* <input type="image" name="StoreChangesButton" value="View Order Reciept" src={"images/continue.gif"|ezdesign()} /> *}
+         <input class="button" type="submit" name="StoreChangesButton" value="{'View Order Reciept'|i18n('design/base/shop')}" />
     </div>
     </form>
 
-    {shop_account_view_gui view=html order=$order}
-    {def $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )
+</div>
+
+{shop_account_view_gui view=html order=$order}
+
+{def $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )
          $locale = false()
          $symbol = false()}
-    {if $currency}
-        {set locale = $currency.locale
-             symbol = $currency.symbol}
-    {/if}
-    <div class="content-basket">
-    <table cellspacing="0" border="0">
-    <tr>
+
+{if $currency}
+    {set locale = $currency.locale
+         symbol = $currency.symbol}
+{/if}
+
+<br />
+
+<h3>{"Product items"|i18n("design/ezwebin/shop/orderview")}</h3>
+<table class="list" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<th>
+	{"Product"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+	<th>
+	{"Count"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+	<th>
+	{"VAT"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+	<th>
+	{"Price inc. VAT"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+	<th>
+	{"Discount"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+	<th>
+	{"Total price ex. VAT"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+	<th>
+	{"Total price inc. VAT"|i18n("design/ezwebin/shop/orderview")}
+	</th>
+</tr>
+{section name=ProductItem loop=$order.product_items show=$order.product_items sequence=array(bglight,bgdark)}
+<tr class="{$ProductItem:sequence}">
+	<td>
+	<a href={concat("/content/view/full/",$ProductItem:item.node_id,"/")|ezurl}>{$ProductItem:item.object_name}</a>
+	</td>
+	<td>
+	{$ProductItem:item.item_count}
+	</td>
+	<td>
+	{$ProductItem:item.vat_value} %
+	</td>
+	<td>
+	{$ProductItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}
+	</td>
+	<td>
+	{$ProductItem:item.discount_percent}%
+	</td>
+	<td>
+	{$ProductItem:item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
+	</td>
+	<td>
+	{$ProductItem:item.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
+	</td>
+</tr>
+{/section}
+</table>
+
+
+
+<h3>{"Order summary"|i18n("design/ezwebin/shop/orderview")}:</h3>
+<table class="list" cellspacing="0" cellpadding="0" border="0">
+<tr>
     <th>
-        {"Quantity"|i18n("design/base/shop")}
-        </th>
-        <th>
-        {"Item"|i18n("design/base/shop")}
-        </th>
-        <th align="right">
-        {"TAX"|i18n("design/base/shop")}
-        </th>
-        <th align="right">
-    	{"Price"|i18n("design/base/shop")}
-        </th>
-        <th align="right">
-	    {"Discount"|i18n("design/base/shop")}
-        </th>
-        <th align="right">
-     	{"Total Price"|i18n("design/base/shop")}
-        </th>
-    </tr>
-    {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
-    <tr>
-        <td class="{$product_item.sequence} product-name" align="center" valign="top">
-            {$product_item.item_count}
-    	</td>
-    	<td class="{$product_item.sequence} product-name">
-        <a href={concat("/content/view/full/",$product_item.node_id,"/")|ezurl}>{$product_item.object_name}</a>
-        {section show=$product_item.item.item_object.option_list}
-              <table class="shop-option_list">
-         {section var=option_item loop=$product_item.item_object.option_list}
-         <tr>
-         {*<td class="shop-option_name">{$option_item.name}</td>*}
-             <td class="shop-option_value">
-                 {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                 {$option_item.value}<br />
-                 <b>{$vary.comment}</b><br />
-                 {if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight:{$vary.weight} lbs</b><br />{/if}
-             </td>
-         </tr>
-         {/section}
-         </table>
-         {section-else}
-             <table class="shop-option_list">
-                 <tr>
-                    {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-                     <td class="shop-option_value">{$prod.data_map.product_id.content}</td>
-                 </tr>
-            </table>
-         {/section}
-        </td>
-	    <td align="right" valign="top">
-        {$product_item.vat_value} %
-    	</td>
-        <td align="right" valign="top">
-        {$product_item.price_inc_vat|l10n( 'currency', $locale, $symbol )}
-    	</td>
-	    <td align="right" valign="top">
-        {$product_item.discount_percent}%
-        </td>
-	    <td align="right" valign="top">
-        {$product_item.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
-	    </td>
-     </tr>
-     <tr><td colspan="6"><hr /></tr>
-     {/section}
-     <tr>
-         <td colspan='6' align="right">
-         Subtotal Inc. TAX:
-         <strong>{$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
-         </td>
-     </tr>
-     	<tr><td colspan="6"><hr /></tr>
-     </table>
-     </div>
+    {"Summary"|i18n("design/ezwebin/shop/orderview")}:
+    </th>
+    <th>
+    Total ex. VAT
+    </th>
+    <th>
+    Total inc. VAT
+    </th>
+</tr>
+<tr class="bglight">
+    <td>
+    {"Subtotal of items"|i18n("design/ezwebin/shop/orderview")}:
+    </td>
+    <td>
+    {$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}
+    </td>
+    <td>
+    {$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}
+    </td>
+</tr>
 
-    <h2>{"Order summary"|i18n("design/base/shop")}:</h2>
-    <table class="list" cellspacing="0" cellpadding="0" border="0">
-    <tr>
-        <td class="bgdark">
-        {"Subtotal of items"|i18n("design/base/shop")}:
-        </td>
-        <td class="bgdark">
-        {$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}
-        </td>
-    </tr>
-    {section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
-    <tr>
-        <td class="{$OrderItem:sequence}">
-        {$OrderItem:item.description}:
-    	</td>
-        <td class="{$OrderItem:sequence}">
-        {$OrderItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}
-    	</td>
-    </tr>
-    {/section}
-    <tr>
-        <td class="bgdark">
-        <b>{"Order total"|i18n("design/base/shop")}</b>
-        </td>
-        <td class="bgdark">
-        <b>{$order.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
-        </td>
-        <td class="bgdark">
-        <b>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</b>
-        </td>
-    </tr>
-    </table>
+{section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
+<tr class="{$OrderItem:sequence}">
+	<td>
+	{$OrderItem:item.description}:
+	</td>
+	<td>
+	{$OrderItem:item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
+	</td>
+	<td>
+	{$OrderItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}
+	</td>
+</tr>
+{/section}
+<tr class="bgdark">
+    <td>
+    	{"Order total"|i18n("design/ezwebin/shop/orderview")}
+    </td>
+    <td>
+    	{$order.total_ex_vat|l10n( 'currency', $locale, $symbol )}
+    </td>
+    <td>
+    	{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
+    </td>
+</tr>
+</table>
 
-    {'false'|bc_ga_urchinOrder( $order )}
+
+<h3>{"Order history"|i18n("design/ezwebin/shop/orderview")}:</h3>
+<table class="list" cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<th>Date</th>
+	<th>Order status</th>
+</tr>
+{let order_status_history=fetch( shop, order_status_history,
+                                 hash( 'order_id', $order.order_nr ) )}
+{section var=history loop=$order_status_history sequence=array(bglight,bgdark)}
+<tr class="{$history.sequence} ">
+    <td class="date">{$sel_pre}{$history.modified|l10n( shortdatetime )}</td>
+	<td>{$history.status_name|wash}</td>
+</tr>
+{/section}
+{/let}
+</table>
+
 </div>
-{undef}
+{'false'|bc_ga_urchinOrder( $order )}
+</div></div></div>
+<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
+</div>

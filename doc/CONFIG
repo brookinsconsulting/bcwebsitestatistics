@@ -3,7 +3,7 @@ BC Google Analytics extension CONFIG
 This document is a general configuration guide to the BC Google Analytics extension settings
 
 BC Google Analytics Extension Settings
-=====================================
+======================================
 
 1. Default Extension Settings
    --------------------------
@@ -88,3 +88,5 @@ BC Google Analytics Extension Settings
       -------------------------------------------
 
       Install the the order statistics template operators, template override, workflow event and trigger dependencies
+
+

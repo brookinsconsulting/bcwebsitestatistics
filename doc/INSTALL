@@ -1,4 +1,4 @@
-BC Google Analytics extension v1.0.1 INSTALL
+BC Google Analytics extension v1.0.2 INSTALL
 
 Introduction
 ============
@@ -32,15 +32,15 @@ Introduction
    ------------
 
    The following requirements exists for using BC Google Analytics extension:
- 
+
    o  eZ publish version:
 
-      Make sure you use eZ publish version 3.4 or higher. Recommended 3.9.2. Tested with 3.10.0
+      Make sure you use eZ publish version 3.8.6 or higher. Recommended 3.9.2. Tested with 3.9.2 and 3.10.0
 
    o  PHP version:
 
-      Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.2
-
+      Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.7 and 4.4.2
+ 
    o  eZ publish must be reachable from the internet:
 
       Make sure you have installed eZ publish on a webserver
@@ -105,6 +105,9 @@ Installation
 
    We must now enable the extension in eZ publish.
 
+   You must enable the bcgoogleanalytics extension *above*
+   ezwebin design extension in order for all features to function properly.
+
    To do this edit site.ini.append(.php) in the folder
    root_of_ezpublish/settings. If this file does not exist;
    create it. Locate (or add) the block
@@ -150,7 +153,7 @@ Configuration
 
     {'false'|bc_ga_urchin()}
 
-    As the last element before the string '</body>'.
+    As the last element before the string '</head>'.
 
     ** Be certain to specify your Urchin website profile account code number in the extension settings.
 
@@ -191,30 +194,31 @@ Configuration
 
 8.2.3.1 Install the following template operators in your primary design extension's templates.
 
-    'bc_ga_urchin', 'bc_ga_urchinHeader' and 'bc_ga_urchinOrder'.
+    'bc_ga_urchin'
     
     For more details on the BC Google Analytics template operator installation steps please see the file doc/USAGE.
 
 8.2.3.2 Install the following template operators in your primary design extension's pagelayout.tpl template
 
-    'bc_ga_urchin' and 'bc_ga_urchinHeader' ...
+    'bc_ga_urchin'
 
-    - bc_ga_urchinHeader - Replace the string '</head><body>' with '{bc_ga_urchinHeader()}'
-    - bc_ga_urchin - Place the template operator '{bc_ga_urchin()}' as the last element before the string '</body>'.
+    - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</head>'.
 
 8.2.3.3 Install the following template operator in your primary design extension's order.tpl template
 
-    - 'bc_ga_urchinOrder' - This template (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. 
+    - 'bc_ga_urchinOrder' - This template (a modified copy of the confirmorder.tpl) is enabled by default by the google analytics design extension and activated by default.
 
     Please note the following important installation dependencies surrounding the customization of the order.tpl template
 
     - The bcgoogleanalytics extension provides one unique template.
 
-    - The template 'google/analytics/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/orderview.tpl'
+    - The template 'google/analytics/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/confirmorder.tpl'
 
     - The template 'order.tpl' has been modified to (upon workflow event trigger) present the user with an 'order completed' view before presenting the user with the 'order view' / 'order receipt view'.
 
     - The template 'order.tpl' has been simplified to ensure it's unique and distinct from the 'order receipt view'.
+
+    - To install the operator 'bc_ga_urchinOrder', Place the template operator '{'false'|bc_ga_urchinOrder( $order )}' in your own replacement for the template order.tpl
 
 8.2.4 Create Workflow
 

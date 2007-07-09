@@ -48,7 +48,7 @@ BC Google Analytics extension USAGE
 2.1.4 Install the following template operators in your primary design extension's templates
       -------------------------------------------------------------------------------------
 
-     - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</body>'.
+     - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</head>'.
 
 2.1.5 Review
       ------
@@ -81,33 +81,36 @@ BC Google Analytics extension USAGE
 2.2.3.1 Install the following template operators in your primary design extension's templates
         -------------------------------------------------------------------------------------
 
-        'bc_ga_urchin', 'bc_ga_urchinHeader' and 'bc_ga_urchinOrder'.
+        'bc_ga_urchin'
 
 2.2.3.2 Install the following template operators in your primary design extension's pagelayout.tpl template
         ---------------------------------------------------------------------------------------------------
 
-        - bc_ga_urchinHeader - Replace the string '</head><body>' with '{'false'|bc_ga_urchinHeader()}'
-
-        - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</body>'.
+        - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</head>'.
 
 2.2.3.3 Install the following template operator in your primary design extension's order.tpl template
         ---------------------------------------------------------------------------------------------
 
-        - 'bc_ga_urchinOrder' - The bcgoogleanalytics extension provides one unique template, 'google/analytics/order.tpl which contains a customized header representing the workflow event (template view) position in the checkout process and the template operator 'bc_ga_urchinOrder'.
+        - 'bc_ga_urchin' - The bcgoogleanalytics extension provides the template, 'google/analytics/order.tpl which contains a customized header representing the workflow event (template view) position in the checkout process and the template operator 'bc_ga_urchin'.
 
         - The template 'google/analytics/order.tpl' (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. Please take care to ensure your own custom design extension is prioritized above the googleanalytics extension.
 
-        If you use a custom design extension other than the stock eZ Publish and ezwebin you will want to seriously consider creating a customized copy of the 'shop/orderview.tpl' template within your own custom design extension and customize this template to include the required template operator '{'false'|bc_ga_urchinOrder()}'.
+        If you use a custom design extension other than the stock eZ Publish and ezwebin you will want to seriously consider creating a customized copy of the 'shop/confirmorder.tpl' template within your own custom design extension and customize this template to include the required template operator '{'false'|bc_ga_urchinOrder( $order )}'.
 
         Please note the following important installation dependencies surrounding the customization of the order.tpl template
 
+        - The bcgoogleanalytics extension provides one unique template.
+
         - The googleanalytics extension provides one unique template, 'google/analytics/order.tpl'
 
-        - The template 'google/analytics/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/orderview.tpl'
+        - The template 'google/analytics/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/confirmorder.tpl'
 
         - The template 'order.tpl' has been modified to (upon workflow event trigger) present the user with an 'order completed' view before presenting the user with the 'order view' / 'order receipt view'.
 
         - The template 'order.tpl' has been simplified to ensure it's unique and distinct from the 'order receipt view'.
+
+        - To install the operator 'bc_ga_urchinOrder', Place the template operator '{'false'|bc_ga_urchinOrder( $order )}' in your own replacement for the template order.tpl
+
 
 2.2.4 Create Workflow
       ---------------

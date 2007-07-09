@@ -13,11 +13,11 @@ statistics.
 BC Google Analytics version
 =======================
 
-The current version of BC Google Analytics is 1.0.1.
-Last Updated: May 23, 2007
+The current version of BC Google Analytics is 1.0.2.
+Last Updated: July 07, 2007
 
 You can find details about changes for this
-version in doc/changelogs/1.0/CHANGELOG-1.0.0-to-1.0.1
+version in doc/changelogs/1.0/CHANGELOG-1.0.1-to-1.0.2
 
 
 License
@@ -37,11 +37,11 @@ The following requirements exists for using BC Google Analytics extension:
 
 o  eZ publish version:
 
-   Make sure you use eZ publish version 3.8.6 or higher. Recommended 3.9.2. Tested with 3.10.0
+   Make sure you use eZ publish version 3.8.6 or higher. Recommended 3.9.2. Tested with 3.9.2 and 3.10.0
 
 o  PHP version:
 
-   Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.2
+   Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.7 and 4.4.2
 
 o  eZ publish must be reachable from the internet:
 
@@ -52,6 +52,11 @@ o  Configured Google Analytics Website Profile
 
    Make sure you have a Google Analytics Account and Website Profile for your website.
 
+
+Features
+============
+
+Details on the features of BC Google Analytics located in the file doc/FEATURES.
 
 Installation
 ============

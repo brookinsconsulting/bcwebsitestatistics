@@ -81,15 +81,17 @@ class eZReceiptType extends eZWorkflowEventType
         if ( $settingSubmitToGoogle == true )
         {
           // Add hook to trigger template override of pagelayout.tpl
+          include_once( 'kernel/common/template.php' );
           include_once( 'kernel/common/eztemplatedesignresource.php' );
           $res =& eZTemplateDesignResource::instance();
           $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
 
           // Template Settings
-          $tpl_name = "design:google/analytics/order.tpl";
           $process->Template = array(
-                               'templateName' => $tpl_name,
-                               'templateVars' => array( 'request_uri' => $requestUri )
+                               'templateName' => "design:google/analytics/order.tpl",
+                               'templateVars' => array( 'request_uri' => $requestUri ),
+                               'path' => array( array( 'url' => false,
+                                         'text' => ezi18n( 'kernel/shop', 'Order Completed' ) ) )
                                );
 
           return EZ_WORKFLOW_TYPE_STATUS_FETCH_TEMPLATE_REPEAT;

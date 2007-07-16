@@ -1,73 +1,9 @@
-BC Google Analytics extension v1.0.2 INSTALL
-
-Introduction
-============
-
-1. What is the BC Google Analytics extension?
-   ---------------------------------------
-
-   The BC Google Analytics extension is an eZ publish extension
-   that provides the fetching and submission of information 
-   from client browser back to google like page view 
-   statistics and order purchase statistics.
-
-   For more information about this extension please read the README file.
-
-2. License
-   -------
-
-   BC Google Analytics extension is licensed under the GNU General Public License.
-
-   The GNU GPL gives you the right to use, modify and redistribute
-   BC Google Analytics under certain conditions. The GNU GPL license
-   is distributed with the software, see the file doc/LICENCE.
-   It is also available at http://www.gnu.org/licenses/gpl.txt
-
-   Using BC Google Analytics under the terms of the GNU GPL is free of charge.
-
-   For more information or questions please contact
-   license@brookinsconsulting.com
-
-3. Requirements
-   ------------
-
-   The following requirements exists for using BC Google Analytics extension:
-
-   o  eZ publish version:
-
-      Make sure you use eZ publish version 3.8.6 or higher. Recommended 3.9.2. Tested with 3.9.2 and 3.10.0
-
-   o  PHP version:
-
-      Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.7 and 4.4.2
- 
-   o  eZ publish must be reachable from the internet:
-
-      Make sure you have installed eZ publish on a webserver
-      that is reachable from the internet.
-
-   o  Configured Google Analytics Website Profile
-
-      Make sure you have a Google Analytics Account and Website Profile for your website.
-
-      You can obtain a Google Analytics Account for no cost ( free ) at,
-      http://www.google.com/analytics/sign_up.html
-
-      BC Google Analytics Requirements
-      -----------------------------
-
-        1. You must have configured your Google Analytics Account
-        2. You must have configured your Google Analytics Website Profile for your web site (url/domain name)
-        3. You must have a configured Google Analytics Account and Website Profile Urchin ID.
-        4. You must have your Website Profile Urchin ID text string ready to put into the settings.
-
-      A more detailed article on these topics is available in doc/HOWTO.
-
+BC Google Analytics extension INSTALL
 
 Installation
 ============
 
-4. Getting eZ publish
+1. Getting eZ publish
    ------------------
 
    You can download a version of eZ publish from ez.no,
@@ -84,7 +20,7 @@ Installation
    http://ez.no/doc
 
 
-5. Installing BC Google Analytics extension package
+2. Installing BC Google Analytics extension package
    ---------------------------------------------
 
    1. Copy the package into the `extension' directory
@@ -94,13 +30,13 @@ Installation
    necessary is depends on the file you downloaded.
 
    [tar.gz]:
-   $ tar -zxvf bcgoogleanalytics-1_0_1.tar.gz
+   $ tar -zxvf bcgoogleanalytics.tar.gz
 
    [zip]:
-   $ unzip bcgoogleanalytics-1_0_1.tar.zip
+   $ unzip bcgoogleanalytics.tar.zip
 
 
-6. Activate BC Google Analytics extension
+3. Activate BC Google Analytics extension
    -------------------------------------------
 
    We must now enable the extension in eZ publish.
@@ -129,25 +65,25 @@ Installation
 Configuration
 =============
 
-7. Configuration of BC Google Analytics extension
-   -------------------------------------------
+4. Configuration of BC Google Analytics extension
+   ----------------------------------------------
 
-   Make sure you have the proper settings in your
-   BC Google Analytics (service) website profile setting.
+   Make sure you have configured your website's profile in the
+   Google Analytics Report Site at, http://google.com/analytics
 
-   7.1 Configuration of the BC Google Analytics extension settings
-
-       Details on configuring BC Google Analytics located in the file doc/CONFIG.
-
-
-8. Install BC Google Analytics Template Operators
-   -------------------------------------------
-
-   Decide first if you only need page tracking or if you also need webshop order tracking. 
+   The configuration of the BC Google Analytics extension settings is required.
+   For details on configuring BC Google Analytics extension settings,
+   please read the file doc/CONFIG.
 
 
-8.1 Add Page Tracking Template Operator
-    -----------------------------------
+5. Install BC Google Analytics Template Operators
+   ----------------------------------------------
+
+   Decide first if you only need page tracking or if you also need webshop order tracking.
+   If you need to collect webshop customer order statistics please follow the instructions below starting at, 5.3
+   If however you only need to collect pageview statistics please follow these following instructions.
+
+5.1 Add Page Tracking Template Operator
 
     Install the following template operator code snippet in your primary design extension's pagelayout.tpl template:
 
@@ -159,54 +95,55 @@ Configuration
 
     For more details on the BC Google Analytics template operator installation steps please see the file doc/USAGE.
 
-8.1.1 Review
-      ------
+5.2 Review
 
-      Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
+    Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
 
-      Clear All Caches. Be certain to clear all caches via cli and admin.
-       - eZ Publish Administration > Setup > Cache >> Clear All
-       - eZ Publish Shell Command, # ./bin/shell/clearcache --clear-all
+    Clear All Caches. Be certain to clear all caches via cli and admin.
+     - eZ Publish Administration > Setup > Cache >> Clear All
+     - eZ Publish Shell Command, # ./bin/shell/clearcache --clear-all
 
-      Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
+    Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
 
-      Reconfirm. Reconfirm the correct and successful installation of the settings and template operators.
+    Reconfirm. Reconfirm the correct and successful installation of the settings and template operators.
 
-      Enable. Enable Google Page Statistics Tracking
+    Enable. Enable Google Page Statistics Tracking
 
-      You must confirm the installation of google analytics urchin information 
-      into your eZ publish installation successfully within the Google Analytics 
-      website after step #8, http://www.google.com/analytics
+    You must confirm the installation of google analytics urchin information 
+    into your eZ publish installation successfully within the Google Analytics 
+    website after step #8, http://www.google.com/analytics
 
-      Analytics Settings > Profile Settings > Tracking Status
+    Analytics Settings > Profile Settings > Tracking Status
 
 
-8.2 Usage: (e-Commerce) Order / Purchase Statistics Tracking for your web site.
+
+5.3 Usage: (e-Commerce) Order / Purchase Statistics Tracking for your web site.
     ---------------------------------------------------------------------------
 
-8.2.1 Enable Extension
+If you need to collect webshop customer order statistics please follow these instructions.
+If however you only need to collect pageview statistics please disregard the following instructions.
+
+5.4 Enable Extension
 
     Simply enable this extension in your eZ Publish installation.
 
-8.2.2 Configure Extension Settings
+5.5 Configure Extension Settings
 
-8.2.3 Install BC Google Analytics Template Operators
+5.6 Install BC Google Analytics Template Operator
 
-8.2.3.1 Install the following template operators in your primary design extension's templates.
-
-    'bc_ga_urchin'
-    
+5.7 Install the template operator in your primary design extension's templates.
+   
     For more details on the BC Google Analytics template operator installation steps please see the file doc/USAGE.
 
-8.2.3.2 Install the following template operators in your primary design extension's pagelayout.tpl template
+5.8 Install the following template operators in your primary design extension's pagelayout.tpl template
 
-    'bc_ga_urchin'
+    Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</head>'.
 
-    - bc_ga_urchin - Place the template operator '{'false'|bc_ga_urchin()}' as the last element before the string '</head>'.
+5.9 Install the following template operator in your primary design extension's order.tpl template
 
-8.2.3.3 Install the following template operator in your primary design extension's order.tpl template
+    ** This step is only required if you do not use the ezwebin design extension
 
-    - 'bc_ga_urchinOrder' - This template (a modified copy of the confirmorder.tpl) is enabled by default by the google analytics design extension and activated by default.
+    'bc_ga_urchinOrder' - This template 'order.tpl' (a modified copy of the confirmorder.tpl) is enabled by default by the google analytics design extension and activated by default.
 
     Please note the following important installation dependencies surrounding the customization of the order.tpl template
 
@@ -220,7 +157,7 @@ Configuration
 
     - To install the operator 'bc_ga_urchinOrder', Place the template operator '{'false'|bc_ga_urchinOrder( $order )}' in your own replacement for the template order.tpl
 
-8.2.4 Create Workflow
+6.0 Create Workflow
 
     A) In the eZ publish admin, go to Setup -> Workflows
        and click New Workflow Group.
@@ -248,8 +185,7 @@ Configuration
 
        6) Note: Do not edit workflow setting, must remove and read to affect workflow event definitions as they are stored in a very static prone to confusion if you try to edit instead of remove and re-add.
 
-8.2.5 Install workflow to trigger
-      ---------------------------
+6.1 Install workflow to trigger
 
     A) Now click on the Triggers link in the left hand menu.
 
@@ -266,8 +202,7 @@ Configuration
     C) After you have followed all these steps, the extension's
        workflow settings should be activated, configured and functioning properly.
 
-8.2.6 Review
-      ------
+6.2 Review
 
       Test. Test to ensure you installation has successfully enabled the related modifications (dependencies)
 
@@ -279,17 +214,18 @@ Configuration
       - the eZ Publish Administration > Setup > Cache 
       - and via shell comandline # ./bin/shell/clearcache --clear-all
 
-9. Testing: Shop Checkout, Workflow and Trigger Configuration
+6. Testing: Shop Checkout, Workflow and Trigger Configuration
    ----------------------------------------------------------
 
    After completing the above setup you should login to eZ publish
    add a product to your basket, proceed to checkout, enter your
    account information and confirm your order.
 
-   Next, after account registration, order confirmation, payment,
-   etc workflow steps have been completed at the very last view to
-   display the BC Google Analytics Order Completed / Javascript 
-   Submission View just before redirecting the user finally at the 
+   After all of the checkout process steps have been completed
+   like account registration, order confirmation, payment, any
+   additional configured workflow events; at the very last view to
+   display the BC Google Analytics Order Completed / Javascript
+   Submission View just before redirecting the user finally at the
    end to the order view list.
 
 

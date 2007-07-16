@@ -91,9 +91,9 @@ BC Google Analytics extension USAGE
 2.2.3.3 Install the following template operator in your primary design extension's order.tpl template
         ---------------------------------------------------------------------------------------------
 
-        - 'bc_ga_urchin' - The bcgoogleanalytics extension provides the template, 'google/analytics/order.tpl which contains a customized header representing the workflow event (template view) position in the checkout process and the template operator 'bc_ga_urchin'.
+        - 'bc_ga_urchinOrder' - The bcgoogleanalytics extension provides the template, 'google/analytics/order.tpl which contains a customized header representing the workflow event (template view) position in the checkout process and the template operator '{'false'|bc_ga_urchinOrder( $order )}'.
 
-        - The template 'google/analytics/order.tpl' (a modified copy of the orderview.tpl) is enabled by default by the google analytics design extension and activated by default. Please take care to ensure your own custom design extension is prioritized above the googleanalytics extension.
+        - The template 'google/analytics/order.tpl' (a modified copy of the confirmorder.tpl) is enabled by default by the google analytics design extension and activated by default. Please take care to ensure your own custom design extension is prioritized above the googleanalytics extension.
 
         If you use a custom design extension other than the stock eZ Publish and ezwebin you will want to seriously consider creating a customized copy of the 'shop/confirmorder.tpl' template within your own custom design extension and customize this template to include the required template operator '{'false'|bc_ga_urchinOrder( $order )}'.
 

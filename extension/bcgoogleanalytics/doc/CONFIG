@@ -30,7 +30,7 @@ BC Google Analytics Extension Settings
    ------------
 
 2.1 BC Google Analytics Account Website Profile
-    ----------------------------------------
+    -------------------------------------------
 
     First, if you do not already have a google analytics account
     for your website you should go sign up first,
@@ -58,7 +58,8 @@ BC Google Analytics Extension Settings
 
 2.4.1 Urchin
       ------
-      First you will want to replace the default tracking code number.
+      First you must replace the default tracking code number (Urchin ID) with your own.
+      You will get this number upon creation of your google analytics website profile.
 
       Default: Urchin=UA-994200-0
       Modification: Urchin=YOUR-Account-Number
@@ -72,7 +73,17 @@ BC Google Analytics Extension Settings
 
       Default: ShopName=eZ
       Modification: ShopName=YourShopName
-      Example: ShopName=mycustomshopname 
+      Example: ShopName=mycustomshopname
+
+2.4.3 HostName (Optional)
+      -------------------
+
+      If you wish to use a hostname different from the hostname configured in the google analytics website's
+      profile settings you would replace the string, 'disabled' with the string of your hostname.
+
+      Default: HostName=disabled
+      Modification: HostName=subdomain.example.com
+      Example: HostName=www3.example.com
 
 2.5 Installing template dependencies
     --------------------------------
@@ -82,11 +93,12 @@ BC Google Analytics Extension Settings
 
     Configure your installation of eZ Publish for page statistics tracking
 
-    Install the the page statistics template operators into your existing pagelayout.tpl
+    Install the the template operator into your existing pagelayout.tpl
+    For more information on this subject please see doc/INSTALL
 
 2.6.2 Configure webshop order statistics tracking
       -------------------------------------------
 
-      Install the the order statistics template operators, template override, workflow event and trigger dependencies
-
+      Install the the order statistics template operator, template override, workflow event and trigger dependencies
+      For more information on this subject please see doc/INSTALL
 

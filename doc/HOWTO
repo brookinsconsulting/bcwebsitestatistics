@@ -86,10 +86,10 @@ Page 3 - Installing BC Google Analytics
     necessary is depends on the file you downloaded.
 
     [tar.gz]:
-    $ tar -zxvf bcgoogleanalytics-1_0_1.tar.gz
+    $ tar -zxvf bcgoogleanalytics.tar.gz
 
     [zip]:
-    $ unzip bcgoogleanalytics-1_0_1.tar.zip
+    $ unzip bcgoogleanalytics.tar.zip
 
 3.2 Re: Activating an eZ publish extension.
 

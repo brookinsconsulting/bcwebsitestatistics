@@ -27,11 +27,11 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-// eZDebug::writeWarning( 'BCGoogleAnalyticsOperators::autoload : load template operator' );
+// eZDebug::writeWarning( 'BCWebsiteStatisticsOperators::autoload : load template operator' );
 
 // Operator autoloading
 $eZTemplateOperatorArray = array();
-$eZTemplateOperatorArray[] = array( 'script' => 'extension/bcgoogleanalytics/autoloads/bcgoogleanalyticsoperators.php',
+$eZTemplateOperatorArray[] = array( 'script' => 'extension/bcwebsitestatistics/autoloads/bcwebsitestatisticsoperators.php',
                                     'class' => 'BCGoogleAnalyticsOperators',
                                     'operator_names' => array( 'bc_ga_urchin', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' ) );
 

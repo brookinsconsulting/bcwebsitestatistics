@@ -2,8 +2,8 @@
 # eZ publish configuration file for workflows.
 
 [EventSettings]
-RepositoryDirectories[]=extension/bcgoogleanalytics/workflowtypes
-ExtensionDirectories[]=bcgoogleanalytics
+RepositoryDirectories[]=extension/bcwebsitestatistics/workflowtypes
+ExtensionDirectories[]=bcwebsitestatistics
 AvailableEventTypes[]=event_ezreceipt
 
 */ ?>

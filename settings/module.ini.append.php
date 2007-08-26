@@ -1,6 +1,6 @@
 <?php /* #?ini charset="utf-8"?
 
 [ModuleSettings]
-ExtensionRepositories[]=bcgoogleanalytics
+ExtensionRepositories[]=bcwebsitestatistics
 
 */ ?>

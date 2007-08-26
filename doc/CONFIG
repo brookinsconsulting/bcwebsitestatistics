@@ -1,8 +1,8 @@
-BC Google Analytics extension CONFIG
+BC Website Statistics extension CONFIG
 
-This document is a general configuration guide to the BC Google Analytics extension settings
+This document is a general configuration guide to the BC Website Statistics extension settings
 
-BC Google Analytics Extension Settings
+BC Website Statistics Extension Settings
 ======================================
 
 1. Default Extension Settings
@@ -29,7 +29,7 @@ BC Google Analytics Extension Settings
 2. Requirements
    ------------
 
-2.1 BC Google Analytics Account Website Profile
+2.1 BC Website Statistics Account Website Profile
     -------------------------------------------
 
     First, if you do not already have a google analytics account

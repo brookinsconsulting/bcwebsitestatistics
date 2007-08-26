@@ -1,9 +1,9 @@
-BC Google Analytics extension README
+BC Website Statistics extension README
 
-What is the BC Google Analytics extension?
+What is the BC Website Statistics extension?
 ==========================================
 
-BC Google Analytics is a certified extension
+BC Website Statistics is a certified extension
 for eZ publish providing the submission of
 information, page view statistics and order
 purchase statistics to google.
@@ -22,7 +22,7 @@ For more information or questions please contact license@brookinsconsulting.com
 Requirements
 ============
 
-The following requirements exists for using BC Google Analytics extension:
+The following requirements exists for using BC Website Statistics extension:
 
 o  eZ publish version:
 
@@ -44,7 +44,7 @@ o  Configured Google Analytics Website Profile
    You can obtain a Google Analytics Account for no cost ( free ) at,
    http://www.google.com/analytics/sign_up.html
 
-   BC Google Analytics Requirements
+   BC Website Statistics Requirements
    --------------------------------
 
    1. You must have configured your Google Analytics Account
@@ -58,32 +58,32 @@ o  Configured Google Analytics Website Profile
 Version
 =======
 
-Details on the version of BC Google Analytics located in the file doc/VERSION.
+Details on the version of BC Website Statistics located in the file doc/VERSION.
 
 Features
 ========
 
-Details on the features of BC Google Analytics located in the file doc/FEATURES.
+Details on the features of BC Website Statistics located in the file doc/FEATURES.
 
 Installation
 ============
 
-Details on installing BC Google Analytics located in the file doc/INSTALL.
+Details on installing BC Website Statistics located in the file doc/INSTALL.
 
 Configuration
 =============
 
-Details on configuring BC Google Analytics located in the file doc/CONFIG.
+Details on configuring BC Website Statistics located in the file doc/CONFIG.
 
 HOWTO
 =====
 
-An article on howto use the BC Google Analytics located in the file doc/HOWTO.
+An article on howto use the BC Website Statistics located in the file doc/HOWTO.
 
 Usage
 =====
 
-Details on using BC Google Analytics located in the file doc/USAGE.
+Details on using BC Website Statistics located in the file doc/USAGE.
 
 Troubleshooting
 ===============

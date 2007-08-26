@@ -1,9 +1,9 @@
-BC Google Analytics extension USAGE
+BC Website Statistics extension USAGE
 
 1. Introduction
    ------------
 
-1.1 What use is the BC Google Analytics extension to you?
+1.1 What use is the BC Website Statistics extension to you?
     --------------------------------------------------
 
     1. Page Statistics Tracking for your web site.
@@ -40,7 +40,7 @@ BC Google Analytics extension USAGE
 
       Simply configure this extension's settings in your eZ Publish installation.
 
-2.1.3 Install BC Google Analytics Template Operators
+2.1.3 Install BC Website Statistics Template Operators
       -------------------------------------------
 
       Decide first if you only need page tracking or if you also need webshop order tracking.
@@ -75,7 +75,7 @@ BC Google Analytics extension USAGE
 2.2.2 Configure Extension Settings
       ----------------------------
 
-2.2.3 Install BC Google Analytics Template Operators
+2.2.3 Install BC Website Statistics Template Operators
       -------------------------------------------
 
 2.2.3.1 Install the following template operators in your primary design extension's templates

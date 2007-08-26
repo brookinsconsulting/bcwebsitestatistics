@@ -1,4 +1,4 @@
-BC Google Analytics extension HOWTO
+BC Website Statistics extension HOWTO
 
 HOWTO
 =====
@@ -58,7 +58,7 @@ Page 2 - Getting started with Google Analytics
 
     Document the Google Analytics Website Profile / Urchin ID returned upon successful creation.
 
-    This id must be installed into the eZ Publish BC Google Analytics extension setting bcgoogleanalytics.ini.append.php variable 'Urchin'.
+    This id must be installed into the eZ Publish BC Website Statistics extension setting bcgoogleanalytics.ini.append.php variable 'Urchin'.
 
 2.5 Configuring additional settings
 
@@ -72,10 +72,10 @@ Page 2 - Getting started with Google Analytics
     Example: ShopName=mycustomshopname 
 
 
-Page 3 - Installing BC Google Analytics
+Page 3 - Installing BC Website Statistics
 
 
-3. Installing BC Google Analytics
+3. Installing BC Website Statistics
 
 3.1 Re: Installing an eZ publish extension.
 
@@ -121,7 +121,7 @@ Page 3 - Installing BC Google Analytics
     please take care to ensure your own custom design extension is prioritized above the bcgoogleanalytics extension.
 
 
-Page 4 - Configuration of BC Google Analytics extension
+Page 4 - Configuration of BC Website Statistics extension
 
 
 4. Installing account number
@@ -157,7 +157,7 @@ Page 4 - Configuration of BC Google Analytics extension
        Example: ShopName=mycustomshopname 
 
 
-4.3 Install BC Google Analytics Template Operators
+4.3 Install BC Website Statistics Template Operators
     
     Decide first if you only need page tracking or if you also need webshop order tracking. 
 
@@ -171,7 +171,7 @@ Page 4 - Configuration of BC Google Analytics extension
 
     ** Be certain to specify your Urchin website profile account code number in the extension settings.
 
-    For more details on the BC Google Analytics template operator installation steps please see the file doc/USAGE.
+    For more details on the BC Website Statistics template operator installation steps please see the file doc/USAGE.
 
 4.4.1 Review
    
@@ -202,13 +202,13 @@ Page 4 - Configuration of BC Google Analytics extension
 
 4.5.2 Configure Extension Settings
 
-4.5.3 Install BC Google Analytics Template Operators
+4.5.3 Install BC Website Statistics Template Operators
 
 4.5.3.1 Install the following template operators in your primary design extension's templates.
 
     'bc_ga_urchin'
     
-    For more details on the BC Google Analytics template operator installation steps please see the file doc/USAGE.
+    For more details on the BC Website Statistics template operator installation steps please see the file doc/USAGE.
 
 4.5.3.2 Install the following template operators in your primary design extension's pagelayout.tpl template
 
@@ -246,12 +246,12 @@ Page 4 - Configuration of BC Google Analytics extension
        1) Name the workflow "Receipt".
 
        2) You will now see an Event select dropdown.
-          1) Select "Event / BC Google Analytics - Order Statistics Submission and Order Completed View"
+          1) Select "Event / BC Website Statistics - Order Statistics Submission and Order Completed View"
 
           2) Confirm you choice by clicking the "Add Event" button
              just to the right of the select dropdown.
 
-       3) Enter a description "BC Google Analytics Receipt Workflow Event Template View"
+       3) Enter a description "BC Website Statistics Receipt Workflow Event Template View"
 
        4) Click the 'Ok' to save these modifications.
 
@@ -319,7 +319,7 @@ Page 4 - Configuration of BC Google Analytics extension
 
    Next, after account registration, order confirmation, payment,
    etc workflow steps have been completed at the very last view to
-   display the BC Google Analytics Order Completed / Javascript
+   display the BC Website Statistics Order Completed / Javascript
    submission view just before redirecting the user finally at the 
    end to the order view list.
 

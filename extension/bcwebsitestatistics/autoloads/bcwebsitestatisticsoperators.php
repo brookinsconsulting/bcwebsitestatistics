@@ -23,20 +23,20 @@
 include_once( "lib/ezutils/classes/ezini.php" );
 
 /*!
-  \class BCGoogleAnalyticsOperators bcgoogleanalyticsoperators.php
-  \brief Googole Analytics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcgoogleanalytics extension
+  \class BCWebsiteStatisticsOperators bcwebsitestatisticsoperators.php
+  \brief Googole Analytics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcwebsitestatistics extension
   \note Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'. The rest of the dependancies are handled internaly.
 */
-class BCGoogleAnalyticsOperators
+class BCWebsiteStatisticsOperators
 {
     /*!
      * Constructor
      *
-     * \brief BCGoogleAnalyticsOperators Constructor
+     * \brief BCWebsiteStatisticsOperators Constructor
      * Sets the class variable 'Operators' which contains an array of available operators names.
      * Sets the class variable 'Debug' to false.
     */
-    function BCGoogleAnalyticsOperators()
+    function BCWebsiteStatisticsOperators()
     {
         $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' );
         $this->Debug = false;
@@ -143,7 +143,7 @@ class BCGoogleAnalyticsOperators
     /*!
      * \public
      * \static
-     * \brief Primary BCGoogle Analytics template operator
+     * \brief Primary BC Website Statistics template operator
      * \see bc_ga_urchinOrder
      * \return bc_ga_urchin html javascript script dependancies and javascript method call with account settings.
      * \note The operator 'bc_ga_urchin' is implimented in the template override, pagelayout.tpl.
@@ -155,13 +155,13 @@ class BCGoogleAnalyticsOperators
     function bc_ga_urchin()
     {
         // Settings
-        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
-        $page_submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
-        $order_submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle');
-        $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
-        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
-        $insecure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
-	$secure_script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'SecureScript');
+        $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
+        $page_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmitToGoogle');
+        $order_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmitToGoogle');
+        $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');
+        $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName');
+        $insecure_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'Script');
+	$secure_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'SecureScript');
 	
 	if( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" )
 	{
@@ -177,15 +177,15 @@ class BCGoogleAnalyticsOperators
         // Checks
         if( $page_submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )
         {
-          $ret .= "\n".'<script src="'. "$script_url". '" type="text/javascript"> </script>'."\n";
+          $ret .= "\n".'<script src="'. "$script_url". '" type="text/javascript"></script>'."\n";
           $ret .= '<script type="text/javascript" language="Javascript">';
-          $ret .= ' _uacct = "'. $uacct .'";';
+          $ret .= '_uacct = "'. $uacct .'";';
 
           if ( $udn != 'disabled' )
           {
-            $ret .= ' _udn = "'. $udn .'";';
+            $ret .= '_udn = "'. $udn .'";';
           }
-          $ret .= ' </script>';
+          $ret .= '</script>';
         }
 
         // Checks
@@ -195,13 +195,13 @@ class BCGoogleAnalyticsOperators
           include_once( 'kernel/common/eztemplatedesignresource.php' );
           $res =& eZTemplateDesignResource::instance();
 
-          // Workflow sets the key variable: $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
+          // Workflow sets the key variable: $res->setKeys( array( array( 'bcwebsitestatistics', '1' ) ) );
           $keys = $res->keys();
 
           // If you wish to view the keys,
 	  // echo "<h1>"; print_r( $keys ); echo "</h1>";
 
-          if ( array_key_exists( 'bcgoogleanalytics', $keys ) ) {
+          if ( array_key_exists( 'bcwebsitestatistics', $keys ) ) {
 	      $ret .= "\n".'<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); __utmSetTrans(); } </script>';
           }
           else
@@ -330,7 +330,7 @@ class BCGoogleAnalyticsOperators
     /*!
      * \public
      * \static
-     * \brief Secondary Google Analytics template operator
+     * \brief Secondary BC Website Statistics template operator
      * \param order An eZOrder object argument. Required.
      * \return bc_ga_urchinOrder javascript method call with account settings
      * \note The operator 'bc_ga_urchinOrder' is implimented in the template override, order.tpl
@@ -345,13 +345,13 @@ class BCGoogleAnalyticsOperators
         $ret = false;
 
         // Settings
-        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
+        $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
 
-        $submit = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'PageSubmitToGoogle');
-        $uacct = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin');
-        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName');
-        $script_url = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Script');
-        $shop_name = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'ShopName');
+        $submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmitToGoogle');
+        $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');
+        $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName');
+        $script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'Script');
+        $shop_name = $ini->variable( 'BCWebsiteStatisticsSettings', 'ShopName');
 
         // Checks
         if( $submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )

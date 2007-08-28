@@ -32,9 +32,7 @@
 
 /*!
   \class Reciept ezreceipttype.php
-  \brief The event Reciept handles the display of a order reciept module vi
-ew to a user for dispay, save, print and to also display custom google analytics javascri
-pt to transmit order purchase details (only durring the final order process) to google.
+  \brief The event Reciept handles the display of a order reciept module view to a user for dispay, save, print and to also display custom google analytics javascript to transmit order purchase details (only durring the final order process) to google.
 */
 
 define( 'EZ_WORKFLOW_TYPE_RECEIPT_ID', 'ezreceipt' );
@@ -46,7 +44,7 @@ class eZReceiptType extends eZWorkflowEventType
     */
     function eZReceiptType()
     {
-        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "BC Google Analytics - Order Statistics Submission and Order Completed View" ) );
+        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "BC Website Statistics - Google Analytics - Order Statistics Submission and Order Completed View" ) );
 
         $this->setTriggerTypes( array( 'shop' => array(
                                 'checkout' => array (
@@ -60,18 +58,18 @@ class eZReceiptType extends eZWorkflowEventType
         $requestUri = eZSys::requestURI();
 
         // Fetch custom settings
-        $ini =& eZINI::instance( 'bcgoogleanalytics.ini' );
-        $test = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'TestMode' ) == 'enabled' ? true : false;
-        $debug = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'DebugMode' ) == 'enabled' ? true : false;
-        $urchin = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'Urchin' );
-        $udn = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'HostName' );
+        $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
+        $test = $ini->variable( 'BCWebsiteStatisticsSettings', 'TestMode' ) == 'enabled' ? true : false;
+        $debug = $ini->variable( 'BCWebsiteStatisticsSettings', 'DebugMode' ) == 'enabled' ? true : false;
+        $urchin = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin' );
+        $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName' );
 
         // Setting to control submission of information
         // to google via client side script (javascript)
 
-        if ( $ini->hasVariable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle' ) )
+        if ( $ini->hasVariable( 'BCWebsiteStatisticsSettings', 'OrderSubmitToGoogle' ) )
         {
-          $settingSubmitToGoogle = $ini->variable( 'BCGoogleAnalyticsWorkflow', 'OrderSubmitToGoogle' ) == 'enabled' ? true : false;
+          $settingSubmitToGoogle = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmitToGoogle' ) == 'enabled' ? true : false;
         }
         else
         {
@@ -84,7 +82,7 @@ class eZReceiptType extends eZWorkflowEventType
           include_once( 'kernel/common/template.php' );
           include_once( 'kernel/common/eztemplatedesignresource.php' );
           $res =& eZTemplateDesignResource::instance();
-          $res->setKeys( array( array( 'bcgoogleanalytics', '1' ) ) );
+          $res->setKeys( array( array( 'bcwebsitestatistics', '1' ) ) );
 
           // Template Settings
           $process->Template = array(

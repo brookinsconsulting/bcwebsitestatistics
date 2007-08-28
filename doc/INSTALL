@@ -171,7 +171,7 @@ If however you only need to collect pageview statistics please disregard the fol
        1) Name the workflow "Receipt".
 
        2) You will now see an Event select dropdown.
-          1) Select "Event / BC Website Statistics - Order Statistics Submission and Order Completed View"
+          1) Select "Event / BC Website Statistics - Google Analytics - Order Statistics Submission and Order Completed View"
 
           2) Confirm you choice by clicking the "Add Event" button
              just to the right of the select dropdown.

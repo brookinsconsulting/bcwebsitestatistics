@@ -32,7 +32,7 @@
 // Operator autoloading
 $eZTemplateOperatorArray = array();
 $eZTemplateOperatorArray[] = array( 'script' => 'extension/bcwebsitestatistics/autoloads/bcwebsitestatisticsoperators.php',
-                                    'class' => 'BCGoogleAnalyticsOperators',
+                                    'class' => 'BCWebsiteStatisticsOperators',
                                     'operator_names' => array( 'bc_ga_urchin', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' ) );
 
 ?>

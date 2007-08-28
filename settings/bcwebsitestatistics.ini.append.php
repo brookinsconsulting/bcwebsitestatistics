@@ -1,6 +1,6 @@
 <?php /* #?ini charset="utf-8"?
 
-[BCGoogleAnalyticsWorkflow]
+[BCWebsiteStatisticsSettings]
 OrderSubmitToGoogle=enabled
 PageSubmitToGoogle=enabled
 Urchin=UA-994200-0

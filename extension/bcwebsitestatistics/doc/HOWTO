@@ -86,16 +86,16 @@ Page 3 - Installing BC Website Statistics
     necessary is depends on the file you downloaded.
 
     [tar.gz]:
-    $ tar -zxvf bcgoogleanalytics.tar.gz
+    $ tar -zxvf bcwebsitestatistics.tar.gz
 
     [zip]:
-    $ unzip bcgoogleanalytics.tar.zip
+    $ unzip bcwebsitestatistics.tar.zip
 
 3.2 Re: Activating an eZ publish extension.
 
     We must now enable the extension in eZ publish.
 
-    You must enable the bcgoogleanalytics extension *above*
+    You must enable the bcwebsitestatistics extension *above*
     ezwebin design extension in order for all features to function properly.
 
     To do this edit site.ini.append(.php) in the folder
@@ -103,7 +103,7 @@ Page 3 - Installing BC Website Statistics
     create it. Locate (or add) the block
 
     [ExtensionSettings] and add the line:
-    ActiveExtensions[]=bcgoogleanalytics
+    ActiveExtensions[]=bcwebsitestatistics
 
     If you run several sites using only one distribution
     and only some of the sites should use the extension,
@@ -113,12 +113,12 @@ Page 3 - Installing BC Website Statistics
     But instead of using ActiveExtensions you must add these lines instead:
 
     [ExtensionSettings]
-    ActiveAccessExtensions[]=bcgoogleanalytics
+    ActiveAccessExtensions[]=bcwebsitestatistics
 
 3.3 Re: Configuring an eZ publish extension general and extension specific settings
 
     If you have a custom design extension other than the stock eZ Publish ezwebin, 
-    please take care to ensure your own custom design extension is prioritized above the bcgoogleanalytics extension.
+    please take care to ensure your own custom design extension is prioritized above the bcwebsitestatistics extension.
 
 
 Page 4 - Configuration of BC Website Statistics extension
@@ -129,13 +129,13 @@ Page 4 - Configuration of BC Website Statistics extension
     To change the required 'Urchin' setting.
 
     First create a global setting override or siteaccess override
-    of the setting file, extension/googleanalytics/settings/bcgoogleanalytics.ini.append.php
+    of the setting file, extension/websitestatistics/settings/bcwebsitestatistics.ini.append.php
 
     Examples of possible settings override file location
 
-    settings/bcgoogleanalytics.ini(.append(.php))
-    settings/override/bcgoogleanalytics.ini(.append(.php))
-    settings/siteaccess/example_com/bcgoogleanalytics.ini(.append(.php))
+    settings/bcwebsitestatistics.ini(.append(.php))
+    settings/override/bcwebsitestatistics.ini(.append(.php))
+    settings/siteaccess/example_com/bcwebsitestatistics.ini(.append(.php))
 
 4.2 Required Settings Modifications
 
@@ -222,7 +222,7 @@ Page 4 - Configuration of BC Website Statistics extension
 
     Please note the following important installation dependencies surrounding the customization of the order.tpl template
 
-    - The bcgoogleanalytics extension provides one unique template.
+    - The bcwebsitestatistics extension provides one unique template.
 
     - The template 'google/analytics/order.tpl' is based on the ezwebin (3.9.0) design extension template 'shop/confirmorder.tpl'
 
@@ -246,7 +246,7 @@ Page 4 - Configuration of BC Website Statistics extension
        1) Name the workflow "Receipt".
 
        2) You will now see an Event select dropdown.
-          1) Select "Event / BC Website Statistics - Order Statistics Submission and Order Completed View"
+          1) Select "Event / BC Website Statistics - Google Analytics - Order Statistics Submission and Order Completed View"
 
           2) Confirm you choice by clicking the "Add Event" button
              just to the right of the select dropdown.

@@ -10,11 +10,11 @@ BC Website Statistics Extension Settings
 
    Upon installing and activating the extension, one must alter these configuration settings.
 
-   File: googleanalytics/settings/bcgoogleanalytics.ini.append.php
+   File: bcwebsitestatistics/settings/bcwebsitestatistics.ini.append.php
 
    <?php /* #?ini charset="iso-8859-1"?
 
-   [BCGoogleAnalyticsWorkflow]
+   [BCWebsiteStatisticsWorkflow]
    OrderSubmitToGoogle=enabled
    PageSubmitToGoogle=enabled
    Urchin=UA-994200-0
@@ -45,13 +45,13 @@ BC Website Statistics Extension Settings
     To change the following settings.
 
     First create a global setting override or siteaccess override
-    of the setting file, extension/bcgoogleanalytics/settings/bcgoogleanalytics.ini.append.php
+    of the setting file, extension/bcwebsitestatistics/settings/bcwebsitestatistics.ini.append.php
 
     Examples of possible settings override file location
 
-    settings/bcgoogleanalytics.ini(.append(.php))
-    settings/override/bcgoogleanalytics.ini(.append(.php))
-    settings/siteaccess/example_com/bcgoogleanalytics.ini(.append(.php))
+    settings/bcwebsitestatistics.ini(.append(.php))
+    settings/override/bcwebsitestatistics.ini(.append(.php))
+    settings/siteaccess/example_com/bcwebsitestatistics.ini(.append(.php))
 
 2.4 Required Settings Modifications
     -------------------------------

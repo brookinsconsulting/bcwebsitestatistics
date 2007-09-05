@@ -24,7 +24,7 @@ include_once( "lib/ezutils/classes/ezini.php" );
 
 /*!
   \class BCWebsiteStatisticsOperators bcwebsitestatisticsoperators.php
-  \brief Googole Analytics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcwebsitestatistics extension
+  \brief BCWebsiteStatistics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcwebsitestatistics extension
   \note Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'. The rest of the dependancies are handled internaly.
 */
 class BCWebsiteStatisticsOperators
@@ -202,16 +202,16 @@ class BCWebsiteStatisticsOperators
 	  // echo "<h1>"; print_r( $keys ); echo "</h1>";
 
           if ( array_key_exists( 'bcwebsitestatistics', $keys ) ) {
-	      $ret .= "\n".'<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); __utmSetTrans(); } </script>';
+	      $ret .= "\n".'<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); __utmSetTrans(); }</script>';
           }
           else
           {
-	      $ret .= "\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); } </script>';
+	      $ret .= "\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); }</script>';
           }
         }
         else
         {
-	      $ret .= "\n".'<script type="text/javascript" language="Javascript"> if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); } </script>';
+	      $ret .= "\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); }</script>';
         }
 
         return $ret;

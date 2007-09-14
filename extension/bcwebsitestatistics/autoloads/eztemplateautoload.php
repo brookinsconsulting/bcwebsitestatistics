@@ -1,12 +1,12 @@
 <?php
 //
-// Definition of BCGoogleAnalyticsOperators autoload
+// Definition of BCWebsiteStatisticsOperators autoload
 //
 // Created on: <14-05-2007 08:42:02 gb>
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
-// SOFTWARE NAME: BC Google Analytics
+// SOFTWARE NAME: BC Website Statistics
 // COPYRIGHT NOTICE: Copyright (C) 2001-2007 Brookins Consulting
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >

@@ -4,6 +4,6 @@
 # Source=pagelayout.tpl
 # MatchFile=pagelayout_analytics.tpl
 # Subdir=templates
-# Match[bcgoogleanalytics]=1
+# Match[bcwebsitestatistics]=1
 
 */ ?>

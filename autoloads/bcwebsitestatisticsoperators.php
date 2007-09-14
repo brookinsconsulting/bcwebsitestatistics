@@ -24,7 +24,7 @@ include_once( "lib/ezutils/classes/ezini.php" );
 
 /*!
   \class BCWebsiteStatisticsOperators bcwebsitestatisticsoperators.php
-  \brief BCWebsiteStatistics Operators class. These operators provide for simple operators which may be installed into templates to provide google analytics client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcwebsitestatistics extension
+  \brief BCWebsiteStatistics Operators class. These operators provide for simple operators which may be installed into templates to provide client side javascript dependancies needed to enable eZ Publish to report pageview and webshop order statistics. This class is used and provided by the bcwebsitestatistics extension
   \note Only the operators required to be installed into your pagelayout.tpl for page and order tracking are 'bc_ga_urchin', 'bc_ga_urchinHeader'. The rest of the dependancies are handled internaly.
 */
 class BCWebsiteStatisticsOperators
@@ -156,8 +156,8 @@ class BCWebsiteStatisticsOperators
     {
         // Settings
         $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
-        $page_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmitToGoogle');
-        $order_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmitToGoogle');
+        $page_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmit');
+        $order_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmit');
         $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');
         $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName');
         $insecure_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'Script');
@@ -347,7 +347,7 @@ class BCWebsiteStatisticsOperators
         // Settings
         $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
 
-        $submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmitToGoogle');
+        $submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmit');
         $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');
         $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName');
         $script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'Script');

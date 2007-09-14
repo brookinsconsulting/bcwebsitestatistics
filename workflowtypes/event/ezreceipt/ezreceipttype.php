@@ -6,7 +6,7 @@
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
-// SOFTWARE NAME: Google Analytics
+// SOFTWARE NAME: BC Website Statistics
 // COPYRIGHT NOTICE: Copyright (C) 2001-2007 Brookins Consulting
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -32,7 +32,7 @@
 
 /*!
   \class Reciept ezreceipttype.php
-  \brief The event Reciept handles the display of a order reciept module view to a user for dispay, save, print and to also display custom google analytics javascript to transmit order purchase details (only durring the final order process) to google.
+  \brief The event Reciept handles the display of a order reciept module view to a user for dispay, save, print and to also display custom javascript to transmit order purchase details (only durring the final order process) to statistics colletion service.
 */
 
 define( 'EZ_WORKFLOW_TYPE_RECEIPT_ID', 'ezreceipt' );
@@ -44,7 +44,7 @@ class eZReceiptType extends eZWorkflowEventType
     */
     function eZReceiptType()
     {
-        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "BC Website Statistics - Google Analytics - Order Statistics Submission and Order Completed View" ) );
+        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "BC Website Statistics - Order Statistics Submission and Order Completed View" ) );
 
         $this->setTriggerTypes( array( 'shop' => array(
                                 'checkout' => array (
@@ -59,24 +59,28 @@ class eZReceiptType extends eZWorkflowEventType
 
         // Fetch custom settings
         $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
-        $test = $ini->variable( 'BCWebsiteStatisticsSettings', 'TestMode' ) == 'enabled' ? true : false;
-        $debug = $ini->variable( 'BCWebsiteStatisticsSettings', 'DebugMode' ) == 'enabled' ? true : false;
+
         $urchin = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin' );
         $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName' );
 
-        // Setting to control submission of information
-        // to google via client side script (javascript)
+        /* Debug settings scheduled to be removed 
+        $test = $ini->variable( 'BCWebsiteStatisticsSettings', 'TestMode' ) == 'enabled' ? true : false;
+        $debug = $ini->variable( 'BCWebsiteStatisticsSettings', 'DebugMode' ) == 'enabled' ? true : false;
+        */
 
-        if ( $ini->hasVariable( 'BCWebsiteStatisticsSettings', 'OrderSubmitToGoogle' ) )
+        // Setting to control submission of information
+        // to service via client side script (javascript)
+
+        if ( $ini->hasVariable( 'BCWebsiteStatisticsSettings', 'OrderSubmit' ) )
         {
-          $settingSubmitToGoogle = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmitToGoogle' ) == 'enabled' ? true : false;
+          $settingSubmit = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmit' ) == 'enabled' ? true : false;
         }
         else
         {
-          $settingSubmitToGoogle = false;
+          $settingSubmit = false;
         }
 
-        if ( $settingSubmitToGoogle == true )
+        if ( $settingSubmit == true )
         {
           // Add hook to trigger template override of pagelayout.tpl
           include_once( 'kernel/common/template.php' );
@@ -86,10 +90,14 @@ class eZReceiptType extends eZWorkflowEventType
 
           // Template Settings
           $process->Template = array(
-                               'templateName' => "design:google/analytics/order.tpl",
+                               'templateName' => "design:bcwebsitestatistics/order.tpl",
                                'templateVars' => array( 'request_uri' => $requestUri ),
-                               'path' => array( array( 'url' => false,
-                                         'text' => ezi18n( 'kernel/shop', 'Order Completed' ) ) )
+                               'path' => array( 
+					       array( 
+						     'url' => false,
+						     'text' => ezi18n( 'kernel/shop', 'Order Completed' ) 
+						     )
+					       )
                                );
 
           return EZ_WORKFLOW_TYPE_STATUS_FETCH_TEMPLATE_REPEAT;

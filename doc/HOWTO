@@ -58,7 +58,7 @@ Page 2 - Getting started with Google Analytics
 
     Document the Google Analytics Website Profile / Urchin ID returned upon successful creation.
 
-    This id must be installed into the eZ Publish BC Website Statistics extension setting bcgoogleanalytics.ini.append.php variable 'Urchin'.
+    This id must be installed into the eZ Publish BC Website Statistics extension setting bcwebsitestatistics.ini.append.php variable 'Urchin'.
 
 2.5 Configuring additional settings
 

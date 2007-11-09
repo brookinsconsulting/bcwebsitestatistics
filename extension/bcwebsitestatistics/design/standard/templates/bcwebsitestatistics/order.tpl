@@ -5,12 +5,12 @@
 <div class="shop-confirmorder">
 
 <ul>
-    <li>1. {"Shopping basket"|i18n("design/standard/templates/google/analytics")}</li>
-    <li>2. {"Account information"|i18n("design/standard/templates/google/analytics")}{* "Billing &amp; Shipping"|i18n("design/standard/templates/google/analytics")*}</li>
-    <li>3. {"Confirm order"|i18n("design/standard/templates/google/analytics")}{* "Confirmation"|i18n("design/standard/templates/google/analytics") *}</li>
-    {* <li>4. {"Payment info"|i18n("design/standard/templates/google/analytics")}</li> *}
-    <li class="selected">4. {* 5. *}{"Order Completed"|i18n("design/standard/templates/google/analytics")}</li>
-    <li>5. {* 6. *}{"Review order receipt"|i18n("design/standard/templates/google/analytics")}</li>
+    <li>1. {"Shopping basket"|i18n("design/standard/templates/bcwebsitestatistics")}</li>
+    <li>2. {"Account information"|i18n("design/standard/templates/bcwebsitestatistics")}{* "Billing &amp; Shipping"|i18n("design/standard/templates/bcwebsitestatistics")*}</li>
+    <li>3. {"Confirm order"|i18n("design/standard/templates/bcwebsitestatistics")}{* "Confirmation"|i18n("design/standard/templates/bcwebsitestatistics") *}</li>
+    {* <li>4. {"Payment info"|i18n("design/standard/templates/bcwebsitestatistics")}</li> *}
+    <li class="selected">4. {* 5. *}{"Order Completed"|i18n("design/standard/templates/bcwebsitestatistics")}</li>
+    <li>5. {* 6. *}{"Review order receipt"|i18n("design/standard/templates/bcwebsitestatistics")}</li>
 </ul>
 
 </div>

@@ -1,28 +1,36 @@
 .
 |-- autoloads
-|   |-- eztemplateautoload.php
-|   |-- googleanalyticsoperators.php
+|   |-- bcwebsitestatisticsoperators.php
+|   `-- eztemplateautoload.php
 |-- design
 |   `-- standard
+|       |-- javascript
+|       |   `-- urchin.js
 |       `-- templates
-|           |-- google
-|           |   `-- analytics
-|           |       |-- order.tpl
-|           |-- pagelayout_analytics.tpl
+|           |-- bcwebsitestatistics
+|           |   `-- order.tpl
+|           |-- content
+|           |   `-- datatype
+|           |       `-- view
+|           |           `-- ezbinaryfile.tpl
+|           `-- pagelayout_analytics.tpl
 |-- doc
 |   |-- CONFIG
 |   |-- DEBUG
 |   |-- FAQ
+|   |-- FEATURES
 |   |-- HOWTO
 |   |-- INSTALL
 |   |-- LICENSE
 |   |-- README
 |   |-- TODO
 |   |-- USAGE
+|   |-- VERSION
 |   |-- changelogs
 |   |   `-- 1.0
 |   |       |-- CHANGELOG-1.0.0
-|   |       `-- CHANGELOG-1.0.0-to-1.0.1
+|   |       |-- CHANGELOG-1.0.0-to-1.0.1
+|   |       `-- CHANGELOG-1.0.1-to-1.0.2
 |   |-- doxygen
 |   |   |-- Doxyfile
 |   |   |-- empty.html
@@ -31,10 +39,10 @@
 |-- ezinfo.php
 |-- modules
 |-- settings
+|   |-- bcwebsitestatistics.ini.append.php
 |   |-- design.ini.append.php
-|   |-- googleanalytics.ini.append.php
-|   |-- module.ini.append
-|   |-- override.ini.append
+|   |-- module.ini.append.php
+|   |-- override.ini.append.php
 |   |-- site.ini.append.php
 |   `-- workflow.ini.append.php
 `-- workflowtypes
@@ -42,3 +50,4 @@
         `-- ezreceipt
             `-- ezreceipttype.php
 
+19 directories, 31 files

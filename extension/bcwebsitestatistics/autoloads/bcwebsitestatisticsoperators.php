@@ -155,7 +155,7 @@ class BCWebsiteStatisticsOperators
     function bc_ga_urchin()
     {
         // Settings
-        $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
+        $ini = eZINI::instance( 'bcwebsitestatistics.ini' );
         $page_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmit');
         $order_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmit');
         $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');
@@ -193,7 +193,7 @@ class BCWebsiteStatisticsOperators
         {
           // Add hook to detect the template override of pagelayout.tpl
           include_once( 'kernel/common/eztemplatedesignresource.php' );
-          $res =& eZTemplateDesignResource::instance();
+          $res = eZTemplateDesignResource::instance();
 
           // Workflow sets the key variable: $res->setKeys( array( array( 'bcwebsitestatistics', '1' ) ) );
           $keys = $res->keys();
@@ -345,7 +345,7 @@ class BCWebsiteStatisticsOperators
         $ret = false;
 
         // Settings
-        $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
+        $ini = eZINI::instance( 'bcwebsitestatistics.ini' );
 
         $submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmit');
         $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');

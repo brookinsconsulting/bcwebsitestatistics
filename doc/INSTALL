@@ -9,9 +9,9 @@ Installation
    You can download a version of eZ publish from ez.no,
    you will find the various versions at:
 
-   http://ez.no/download/ez_publish/ez_publish_3_stable_releases
+   http://ez.no/download/ez_publish/ez_publish_4_stable_releases
 
-   Note: You will require eZ publish 3.9.2 or higher
+   Note: You will require eZ publish 4.0.0 or higher
 
    Information on the installation of eZ publish can be found at:
    
@@ -101,7 +101,7 @@ Configuration
 
     Clear All Caches. Be certain to clear all caches via cli and admin.
      - eZ Publish Administration > Setup > Cache >> Clear All
-     - eZ Publish Shell Command, # ./bin/shell/clearcache --clear-all
+     - eZ Publish Shell Command, # ./bin/php/ezcache.php --clear-all
 
     Review. Review the source code output to ensure the page and order tracking features are enabled correctly.
 
@@ -212,7 +212,7 @@ If however you only need to collect pageview statistics please disregard the fol
 
       Clear All Caches. Be certain to clear all caches. Both within 
       - the eZ Publish Administration > Setup > Cache 
-      - and via shell comandline # ./bin/shell/clearcache --clear-all
+      - and via shell comandline # ./bin/php/ezcache.php --clear-all
 
 6. Testing: Shop Checkout, Workflow and Trigger Configuration
    ----------------------------------------------------------

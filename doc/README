@@ -26,11 +26,11 @@ The following requirements exists for using BC Website Statistics extension:
 
 o  eZ publish version:
 
-   Make sure you use eZ publish version 3.8.6 or higher. Recommended 3.9.2. Tested with 3.9.2 and 3.10.0
+   Make sure you use eZ publish version 4.0.0 or higher. Recommended 4.0.0. Tested with 4.0.0
 
 o  PHP version:
 
-   Make sure you have PHP 4.4.2 or higher. Recommended 4.4.7. Tested with 4.4.7 and 4.4.2
+   Make sure you have PHP 5.1 or higher. Recommended 5.2. Tested with 5.2.3
 
 o  eZ publish must be reachable from the internet:
 

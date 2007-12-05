@@ -35,30 +35,32 @@
   \brief The event Reciept handles the display of a order reciept module view to a user for dispay, save, print and to also display custom javascript to transmit order purchase details (only durring the final order process) to statistics colletion service.
 */
 
-define( 'EZ_WORKFLOW_TYPE_RECEIPT_ID', 'ezreceipt' );
-
 class eZReceiptType extends eZWorkflowEventType
 {
+    const WORKFLOW_TYPE_STRING = 'ezreceipt';
+
     /*!
      Constructor
     */
     function eZReceiptType()
     {
-        $this->eZWorkflowEventType( EZ_WORKFLOW_TYPE_RECEIPT_ID, ezi18n( 'kernel/workflow/event', "BC Website Statistics - Order Statistics Submission and Order Completed View" ) );
-
+        $this->eZWorkflowEventType( eZReceiptType::WORKFLOW_TYPE_STRING,
+         ezi18n( 'kernel/workflow/event', 
+         "BC Website Statistics - Order Statistics Submission and Order Completed View" ) );
+	
         $this->setTriggerTypes( array( 'shop' => array(
-                                'checkout' => array (
-                                'after' ) ) ) );
+				       'checkout' => array (
+                                       'after' ) ) ) );
     }
 
-    function execute( &$process, &$event )
+    function execute( $process, $event )
     {
         // Fetch request variables
-        $http =& eZHTTPTool::instance();
+        $http = eZHTTPTool::instance();
         $requestUri = eZSys::requestURI();
 
         // Fetch custom settings
-        $ini =& eZINI::instance( 'bcwebsitestatistics.ini' );
+        $ini = eZINI::instance( 'bcwebsitestatistics.ini' );
 
         $urchin = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin' );
         $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName' );
@@ -85,7 +87,7 @@ class eZReceiptType extends eZWorkflowEventType
           // Add hook to trigger template override of pagelayout.tpl
           include_once( 'kernel/common/template.php' );
           include_once( 'kernel/common/eztemplatedesignresource.php' );
-          $res =& eZTemplateDesignResource::instance();
+          $res = eZTemplateDesignResource::instance();
           $res->setKeys( array( array( 'bcwebsitestatistics', '1' ) ) );
 
           // Template Settings
@@ -100,15 +102,15 @@ class eZReceiptType extends eZWorkflowEventType
 					       )
                                );
 
-          return EZ_WORKFLOW_TYPE_STATUS_FETCH_TEMPLATE_REPEAT;
+          return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
         }
         else
         {
-            return EZ_WORKFLOW_TYPE_STATUS_ACCEPTED;
+            return eZWorkflowType::STATUS_ACCEPTED;
         }
     }
 }
 
-eZWorkflowEventType::registerType( EZ_WORKFLOW_TYPE_RECEIPT_ID, "ezreceipttype" );
+eZWorkflowEventType::registerType( "event", eZReceiptType::WORKFLOW_TYPE_STRING, "ezreceipttype" );
 
 ?>

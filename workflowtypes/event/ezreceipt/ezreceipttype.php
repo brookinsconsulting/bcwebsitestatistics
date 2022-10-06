@@ -45,7 +45,7 @@ class eZReceiptType extends eZWorkflowEventType
     function eZReceiptType()
     {
         $this->eZWorkflowEventType( eZReceiptType::WORKFLOW_TYPE_STRING,
-         ezi18n( 'kernel/workflow/event', 
+         ezpI18n::tr( 'kernel/workflow/event',
          "BC Website Statistics - Order Statistics Submission and Order Completed View" ) );
 	
         $this->setTriggerTypes( array( 'shop' => array(
@@ -94,10 +94,10 @@ class eZReceiptType extends eZWorkflowEventType
           $process->Template = array(
                                'templateName' => "design:bcwebsitestatistics/order.tpl",
                                'templateVars' => array( 'request_uri' => $requestUri ),
-                               'path' => array( 
-					       array( 
+                               'path' => array(
+					       array(
 						     'url' => false,
-						     'text' => ezi18n( 'kernel/shop', 'Order Completed' ) 
+						     'text' => ezpI18n::tr( 'kernel/shop', 'Order Completed' )
 						     )
 					       )
                                );

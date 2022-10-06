@@ -36,7 +36,7 @@ class BCWebsiteStatisticsOperators
      * Sets the class variable 'Operators' which contains an array of available operators names.
      * Sets the class variable 'Debug' to false.
     */
-    function BCWebsiteStatisticsOperators()
+    function __construct()
     {
         $this->Operators = array( 'bc_ga_urchin', 'bc_ga_urchinOrder', 'bc_ga_xmlAttributeValue', 'bc_ga_jsEscapedString', 'bc_ga_formatNumericDecimal' );
         $this->Debug = false;

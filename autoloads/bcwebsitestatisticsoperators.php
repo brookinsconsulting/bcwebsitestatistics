@@ -161,25 +161,37 @@ class BCWebsiteStatisticsOperators
         $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');
         $udn = $ini->variable( 'BCWebsiteStatisticsSettings', 'HostName');
         $insecure_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'Script');
-	$secure_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'SecureScript');
-	
-	if( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" )
-	{
-	  $script_url = $secure_script_url;
-	} 
-	else 
-	{
-	  $script_url = $insecure_script_url;
-	}
+        $secure_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'SecureScript');
+        $secure_tag_manager_script_url = $ini->variable( 'BCWebsiteStatisticsSettings', 'SecureTagManagerScript');
 
-	$ret = false;
-	
+        if( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" )
+        {
+            $script_url = $secure_script_url;
+        }
+        else
+        {
+            $script_url = $insecure_script_url;
+        }
+
+        $ret = false;
+
         // Checks
         if( $page_submit == 'enabled' and $uacct != 'disabled' and isset( $script_url ) )
         {
-          $ret .= "\n".'<script src="'. "$script_url". '" type="text/javascript"></script>'."\n";
+          if( $secure_tag_manager_script_url != '' )
+          {
+               $ret .= "\n".'<script async src="'. $secure_tag_manager_script_url .'?id='. $uacct .'"></script>';
+          }
+	  else
+          {
+               $ret .= "\n".'<script src="'. "$script_url". '" type="text/javascript"></script>'."\n";
+          }
+
           $ret .= '<script type="text/javascript" language="Javascript">';
-          $ret .= '_uacct = "'. $uacct .'";';
+          $ret .= "  window.dataLayer = window.dataLayer || [];";
+          $ret .= "  function gtag(){dataLayer.push(arguments);}";
+          $ret .= "  gtag('js', new Date());";
+          $ret .= "  gtag('config', '". $uacct ."');";
 
           if ( $udn != 'disabled' )
           {

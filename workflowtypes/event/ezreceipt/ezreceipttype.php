@@ -42,7 +42,7 @@ class eZReceiptType extends eZWorkflowEventType
     /*!
      Constructor
     */
-    function eZReceiptType()
+    function __construct()
     {
         $this->eZWorkflowEventType( eZReceiptType::WORKFLOW_TYPE_STRING,
          ezpI18n::tr( 'kernel/workflow/event',

@@ -4,9 +4,9 @@ class bcwebsitestatisticsInfo
     function info()
     {
         return array(
-            'Name' => "<a href='http://projects.ez.no/bcwebsitestatistics'>BC Website Statistics</a>",
-            'Version' => "1.0.3",
-            'Copyright' => "Copyright (C) 2001 - 2007 <a href='http://brookinsconsulting.com/'>Brookins Consulting</a>",
+            'Name' => "<a href='https://github.com/brookinsconsulting/bcwebsitestatistics'>BC Website Statistics</a>",
+            'Version' => "1.0.4",
+            'Copyright' => "Copyright (C) 2001 - 2023 <a href='http://brookinsconsulting.com/'>Brookins Consulting</a>",
             'Author' => "Brookins Consulting",
             'License' => "GNU General Public License"
         );

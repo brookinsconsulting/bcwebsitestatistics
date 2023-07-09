@@ -20,7 +20,7 @@
 // this licencing isn't clear to you.
 //
 
-include_once( "lib/ezutils/classes/ezini.php" );
+//include_once( "lib/ezutils/classes/ezini.php" );
 
 /*!
   \class BCWebsiteStatisticsOperators bcwebsitestatisticsoperators.php
@@ -155,7 +155,8 @@ class BCWebsiteStatisticsOperators
     function bc_ga_urchin()
     {
         // Settings
-        $ini = eZINI::instance( 'bcwebsitestatistics.ini' );
+        $siteaccessSpecificInIFile = new BCUsingOWMultisiteIni();
+        $ini = $siteaccessSpecificInIFile->getInstance( false, 'bcwebsitestatistics.ini' );
         $page_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'PageSubmit');
         $order_submit = $ini->variable( 'BCWebsiteStatisticsSettings', 'OrderSubmit');
         $uacct = $ini->variable( 'BCWebsiteStatisticsSettings', 'Urchin');

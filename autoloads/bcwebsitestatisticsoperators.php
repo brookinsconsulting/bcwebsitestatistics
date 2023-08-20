@@ -213,7 +213,7 @@ class BCWebsiteStatisticsOperators
 
           // If you wish to view the keys,
 	  // echo "<h1>"; print_r( $keys ); echo "</h1>";
-
+/*
           if ( array_key_exists( 'bcwebsitestatistics', $keys ) ) {
 	      $ret .= "\n".'<meta http-equiv="Content-Script-Type" content="text/javascript">'."\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); __utmSetTrans(); }</script>';
           }
@@ -221,10 +221,11 @@ class BCWebsiteStatisticsOperators
           {
 	      $ret .= "\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); }</script>';
           }
+	  */
         }
         else
         {
-	      $ret .= "\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); }</script>';
+//	      $ret .= "\n".'<script type="text/javascript" language="Javascript">if( !window.loaders ) { window.loaders = new Array(0); } if( window.onload ) { window.loaders.push(window.onload); } window.onload = function() { for(var i=0; i <  window.loaders.length; i++) { var func = window.loaders[i]; func(); } urchinTracker(); }</script>';
         }
 
         return $ret;
@@ -244,7 +245,7 @@ class BCWebsiteStatisticsOperators
      * \code {def $s=bc_ga_xmlAttributeValue( 'country', $xml_string )}
      * \endcode
     */
-    function bc_ga_xmlAttributeValue( $name = false, $data, $ret = false, $debug = false )
+    function bc_ga_xmlAttributeValue( $name = false, $data = false, $ret = false, $debug = false )
     {
         // given string $data, will return the text string content of the $name attribute content of a given valid xml document.
         if ( $debug )

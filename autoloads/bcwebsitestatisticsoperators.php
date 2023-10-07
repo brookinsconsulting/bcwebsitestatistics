@@ -192,7 +192,7 @@ class BCWebsiteStatisticsOperators
           $ret .= "  window.dataLayer = window.dataLayer || [];";
           $ret .= "  function gtag(){dataLayer.push(arguments);}";
           $ret .= "  gtag('js', new Date());";
-          $ret .= "  gtag('config', '". $uacct ."');";
+          $ret .= "  gtag('config', '". $uacct ."', { cookie_flags: 'SameSite=None;Secure' } );";
 
           if ( $udn != 'disabled' )
           {
